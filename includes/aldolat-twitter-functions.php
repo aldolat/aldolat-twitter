@@ -33,10 +33,11 @@ function aldolat_twitter_get_defaults() {
 		'title'              => esc_html__( 'My latest tweets', 'aldolat-twitter' ),
 		'intro_text'         => '',
 		'screen_name'        => '',
-		'count'              => 3,
+		'count'              => 5,
 		'exclude_replies'    => false,
 		'include_rts'        => true,
 		'cache_duration'     => 5, // In minutes.
+		'new_tab'            => false,
 		'consumer_key'       => '',
 		'consumer_secret'    => '',
 		'oauth_token'        => '',

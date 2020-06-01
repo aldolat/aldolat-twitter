@@ -28,6 +28,7 @@ class Aldolat_Twitter {
 	private $count;
 	private $exclude_replies;
 	private $include_rts;
+	private $new_tab;
 
 	/**
 	 * Constructon method.
@@ -36,14 +37,15 @@ class Aldolat_Twitter {
 	 */
 	public function __construct( $args ) {
 		$defaults = array(
-			'consumer_key'       => '',
-			'consumer_secret'    => '',
-			'oauth_token'        => '',
-			'oauth_token_secret' => '',
 			'screen_name'        => '',
 			'count'              => 5,
 			'exclude_replies'    => false,
 			'include_rts'        => true,
+			'new_tab'            => false,
+			'consumer_key'       => '',
+			'consumer_secret'    => '',
+			'oauth_token'        => '',
+			'oauth_token_secret' => '',
 		);
 		wp_parse_args( $args, $defaults );
 
@@ -61,6 +63,7 @@ class Aldolat_Twitter {
 		$this->count           = $args['count'];
 		$this->exclude_replies = $args['exclude_replies'];
 		$this->include_rts     = $args['include_rts'];
+		$this->new_tab         = $args['new_tab'];
 	}
 
 	private function relative_time( $t ) {
@@ -72,11 +75,17 @@ class Aldolat_Twitter {
 		$tweet_text     = $tweet->full_text;
 		$tweet_entities = array();
 
+		if ( $this->new_tab ) {
+			$new_tab_text = 'rel="external noreferrer nofollow noopener" target="_blank" ';
+		} else {
+			$new_tab_text = '';
+		}
+
 		foreach ( $tweet->entities->urls as $url ) {
 			$tweet_entities[] = array(
 				'type'    => 'url',
 				'curText' => mb_substr( $tweet_text, $url->indices[0], ( $url->indices[1] - $url->indices[0] ) ),
-				'newText' => '<a href="' . $url->expanded_url . '">' . $url->display_url . '</a>',
+				'newText' => '<a ' . $new_tab_text . 'href="' . $url->expanded_url . '">' . $url->display_url . '</a>',
 			);
 		}
 
@@ -85,7 +94,7 @@ class Aldolat_Twitter {
 			$tweet_entities[] = array(
 				'type'    => 'mention',
 				'curText' => mb_substr( $tweet_text, $mention->indices[0], ( $mention->indices[1] - $mention->indices[0] ) ),
-				'newText' => '<a href="https://twitter.com/' . $mention->screen_name . '">' . $string . '</a>',
+				'newText' => '<a ' . $new_tab_text . 'href="https://twitter.com/' . $mention->screen_name . '">' . $string . '</a>',
 			);
 		}
 
@@ -94,7 +103,7 @@ class Aldolat_Twitter {
 			$tweet_entities[] = array(
 				'type'    => 'hashtag',
 				'curText' => mb_substr( $tweet_text, $tag->indices[0], ( $tag->indices[1] - $tag->indices[0] ) ),
-				'newText' => '<a href="https://twitter.com/search?q=%23' . $tag->text . '&amp;src=hash">' . $string . '</a>',
+				'newText' => '<a ' . $new_tab_text . 'href="https://twitter.com/hashtag/' . $tag->text . '">' . $string . '</a>',
 			);
 		}
 
@@ -119,9 +128,15 @@ class Aldolat_Twitter {
 		$resp   = $this->connection->get( 'statuses/user_timeline', $params );
 		$tweets = json_decode( $resp );
 
+		if ( $this->new_tab ) {
+			$new_tab_text = 'rel="external noreferrer nofollow noopener" target="_blank" ';
+		} else {
+			$new_tab_text = '';
+		}
+
 		foreach ( $tweets as $tweet ) {
 			$html .= '<div class="tweet">';
-			$html .= '<a rel="external noreferrer nofollow noopener" target="_blank" href="https://twitter.com/' . $this->screen_name . '/status/' . $tweet->id_str . '">';
+			$html .= '<a ' . $new_tab_text . 'href="https://twitter.com/' . $this->screen_name . '/status/' . $tweet->id_str . '">';
 			$html .= '<time class="tweet-date">' . $this->get_tweet_time( $tweet->created_at ) . '</time>';
 			$html .= '</a>';
 			$html .= '<div class="tweet-body">' . $this->format( $tweet ) . '</div>';

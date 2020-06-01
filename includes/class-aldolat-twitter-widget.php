@@ -83,6 +83,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			'exclude_replies'    => $instance['exclude_replies'],
 			'include_rts'        => $instance['include_rts'],
 			'cache_duration'     => $instance['cache_duration'],
+			'new_tab'            => $instance['new_tab'],
 			'consumer_key'       => $instance['consumer_key'],
 			'consumer_secret'    => $instance['consumer_secret'],
 			'oauth_token'        => $instance['oauth_token'],
@@ -131,6 +132,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			$instance['cache_duration'] = 5;
 		}
 
+		$instance['new_tab']            = isset( $new_instance['new_tab'] ) ? true : false;
 		$instance['consumer_key']       = sanitize_text_field( $new_instance['consumer_key'] );
 		$instance['consumer_secret']    = sanitize_text_field( $new_instance['consumer_secret'] );
 		$instance['oauth_token']        = sanitize_text_field( $new_instance['oauth_token'] );
@@ -229,6 +231,14 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 				esc_attr( $instance['cache_duration'] ),
 				'5',
 				esc_html__( 'In minutes. The minimum accepted value is 5.', 'aldolat-twitter' )
+			);
+
+			// New tab for links.
+			aldolat_twitter_form_checkbox(
+				esc_html__( 'Open links in a new browser tab', 'aldolat-twitter' ),
+				$this->get_field_id( 'new_tab' ),
+				$this->get_field_name( 'new_tab' ),
+				$instance['new_tab']
 			);
 			?>
 
