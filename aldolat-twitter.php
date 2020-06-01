@@ -42,6 +42,10 @@
  */
 
 /**
+ * TODO: Change the caching so that the user can use more than one widget.
+ */
+
+/**
  * Prevent direct access to this file.
  *
  * @since 0.0.1

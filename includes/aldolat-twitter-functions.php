@@ -30,11 +30,13 @@ if ( ! defined( 'WPINC' ) ) {
  */
 function aldolat_twitter_get_defaults() {
 	$defaults = array(
-		'title'              => esc_html__( 'My tweets', 'pinboard-bookmarks' ),
+		'title'              => esc_html__( 'My latest tweets', 'pinboard-bookmarks' ),
 		'intro_text'         => '',
 		'screen_name'        => '',
 		'count'              => 3,
-		'exclude_replies'    => true,
+		'exclude_replies'    => false,
+		'include_rts'        => true,
+		'cache_duration'     => 5, // In minutes.
 		'consumer_key'       => '',
 		'consumer_secret'    => '',
 		'oauth_token'        => '',
@@ -62,7 +64,7 @@ function aldolat_twitter_get_tweets( $args ) {
 	if ( false === $feed ) {
 		$twitter_getter = new Aldolat_Twitter( $args );
 		$html           = $twitter_getter->fetch();
-		set_transient( 'aldolat-twitter-tweets', $html, 5 * MINUTE_IN_SECONDS );
+		set_transient( 'aldolat-twitter-tweets', $html, $args['cache_duration'] * MINUTE_IN_SECONDS );
 	} else {
 		$html = $feed;
 	}
