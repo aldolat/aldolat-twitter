@@ -1,32 +1,41 @@
-=== Aldolat Twitter ===
-Contributors: aldolat
-Donate link: https://dev.aldolat.it/projects/aldolat-twitter/
-Tags: twitter, sidebar, widget
-Requires at least: 5.4
-Tested up to: 5.4
-Stable tag: 0.0.2
-License: GPLv3 or later
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
+# Aldolat Twitter
+
+**Contributors** aldolat  
+**Donate link** https://dev.aldolat.it/projects/aldolat-twitter/  
+**Tags** twitter, sidebar, widget  
+**Requires at least** 5.4  
+**Tested up to** 5.4  
+**Stable tag** 0.0.2  
+**License** GPLv3 or later  
+**License URI** https://www.gnu.org/licenses/gpl-3.0.html  
 
 Display your Tweets in a widget.
 
-== Description ==
+* [Aldolat Twitter](#aldolat-twitter)
+	* [Description](#description)
+	* [Filing Bugs](#filing-bugs)
+	* [Privacy Policy](#privacy-policy)
+	* [Installation](#installation)
+		* [Installing the plugin](#installing-the-plugin)
+		* [Uninstalling the plugin](#uninstalling-the-plugin)
+
+## Description
 
 This plugin provides a widget where to display your tweets.
 
-== Filing Bugs ==
+## Filing Bugs
 
 If you have found a bug, please report it on [GitHub](https://github.com/aldolat/aldolat-twitter/issues).
 
 This plugin is developed using [GitHub](https://github.com/aldolat/aldolat-twitter). If you wrote an enhancement and would share it with the world, please send me a [Pull request](https://github.com/aldolat/aldolat-twitter/pulls).
 
-== Privacy Policy ==
+## Privacy Policy
 
 This plugin does not collect any user data.
 
-== Installation ==
+## Installation
 
-=== Installing Aldolat Twitter ===
+### Installing the plugin
 
 This section describes how to install the plugin and get it working.
 
@@ -36,6 +45,6 @@ This section describes how to install the plugin and get it working.
 1. Adjust the options to fit your needs
 1. Save and test your results.
 
-=== Uninstalling ===
+### Uninstalling the plugin
 
 Aldolat Twitter cleans up after itself. All plugin settings will be removed from your database when the plugin is uninstalled via the Plugins screen.

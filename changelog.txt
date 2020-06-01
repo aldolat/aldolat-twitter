@@ -1,0 +1,9 @@
+== Changelog ==
+
+= 0.0.2 =
+
+* First completion of the plugin.
+
+= 0.0.1 =
+
+* First release of the plugin.

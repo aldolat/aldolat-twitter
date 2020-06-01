@@ -1,0 +1,132 @@
+# Copyright (C) 2020 Aldo Latino
+# This file is distributed under the same license as the Aldolat Twitter plugin.
+# Aldo Latino <aldolat@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: Aldolat Twitter 0.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aldolat-twitter\n"
+"POT-Creation-Date: 2020-06-01T17:59:17+02:00\n"
+"PO-Revision-Date: 2020-06-01 17:40+0200\n"
+"Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
+"Language-Team: Italian <kde-i18n-it@kde.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.04.1\n"
+"X-Domain: aldolat-twitter\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+#: includes/class-aldolat-twitter-widget.php:39
+msgid "Aldolat Twitter"
+msgstr "Aldolat Twitter"
+
+#. Plugin URI of the plugin
+msgid "https://dev.aldolat.it/projects/aldolat-twitter/"
+msgstr "https://dev.aldolat.it/projects/aldolat-twitter/"
+
+#. Description of the plugin
+msgid "Display your Tweets in a widget."
+msgstr "Mostra i tuoi tweet in un widget."
+
+#. Author of the plugin
+msgid "Aldo Latino"
+msgstr "Aldo Latino"
+
+#. Author URI of the plugin
+msgid "https://www.aldolat.it/"
+msgstr "https://www.aldolat.it/"
+
+#: includes/aldolat-twitter-functions.php:33
+#: includes/class-aldolat-twitter-widget.php:167
+msgid "My latest tweets"
+msgstr "I miei ultimi tweet"
+
+#: includes/class-aldolat-twitter-widget.php:30
+msgid "Publish your tweets in your blog"
+msgstr "Pubblica i tuoi tweet nel tuo blog"
+
+#: includes/class-aldolat-twitter-widget.php:158
+msgid "Title of the widget"
+msgstr "Titolo del widget"
+
+#: includes/class-aldolat-twitter-widget.php:163
+msgid "Title"
+msgstr "Titolo"
+
+#: includes/class-aldolat-twitter-widget.php:171
+msgid "Introductory text"
+msgstr "Testo introduttivo"
+
+#: includes/class-aldolat-twitter-widget.php:176
+msgid "Place this text after the title"
+msgstr "Metti questo testo dopo il titolo"
+
+#: includes/class-aldolat-twitter-widget.php:180
+msgid "These are my latest tweets. Follow me on Twitter!"
+msgstr "Questi sono i miei ultimi tweet. Seguimi su Twitter!"
+
+#: includes/class-aldolat-twitter-widget.php:181
+msgid "You can use some HTML, as you would do when writing a post."
+msgstr "Puoi usare anche dell'HTML, come quando scrivi un articolo."
+
+#: includes/class-aldolat-twitter-widget.php:186
+msgid "Setup"
+msgstr "Impostazioni"
+
+#: includes/class-aldolat-twitter-widget.php:191
+msgid "Username on Twitter:"
+msgstr "Nome utente su Twitter:"
+
+#: includes/class-aldolat-twitter-widget.php:195
+msgid "username"
+msgstr "nome_utente"
+
+#: includes/class-aldolat-twitter-widget.php:196
+msgid "This is the only mandatory option."
+msgstr "Questa è l'unica opzione obbligatoria."
+
+#: includes/class-aldolat-twitter-widget.php:201
+msgid "Number of items:"
+msgstr "Numero di voci:"
+
+#: includes/class-aldolat-twitter-widget.php:210
+msgid "Exclude replies"
+msgstr "Escludi le risposte"
+
+#: includes/class-aldolat-twitter-widget.php:218
+msgid "Include retweets"
+msgstr "Includi i retweet"
+
+#: includes/class-aldolat-twitter-widget.php:226
+msgid "Cache duration:"
+msgstr "Durata della cache:"
+
+#: includes/class-aldolat-twitter-widget.php:231
+msgid "In minutes. The minimum accepted value is 5."
+msgstr "In minuti. Il valore minimo accettato è 5."
+
+#: includes/class-aldolat-twitter-widget.php:235
+msgid "Twitter authentication"
+msgstr "Autenticazione su Twitter"
+
+#: includes/class-aldolat-twitter-widget.php:240
+msgid "Consumer Key:"
+msgstr "Consumer Key:"
+
+#: includes/class-aldolat-twitter-widget.php:247
+msgid "Consumer secret:"
+msgstr "Consumer secret:"
+
+#: includes/class-aldolat-twitter-widget.php:254
+msgid "Oauth token:"
+msgstr "Oauth token:"
+
+#: includes/class-aldolat-twitter-widget.php:261
+msgid "Oauth token secret:"
+msgstr "Oauth token secret:"
+
+#: includes/class-aldolat-twitter.php:148
+msgid "ago"
+msgstr "fa"
