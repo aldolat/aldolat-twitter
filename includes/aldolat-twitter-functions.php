@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
  * $defaults contains the default parameters:
  *    string  $title            The title of the widget.
  *    string  $intro_text       The introductory text for the widget.
- *    string  $username         The username on Pinboard.
+ *    string  $username         The username on Twitter.
  *    string  $widget_id        The ID of the widget.
  * }
  *
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 function aldolat_twitter_get_defaults() {
 	$defaults = array(
-		'title'              => esc_html__( 'My latest tweets', 'pinboard-bookmarks' ),
+		'title'              => esc_html__( 'My latest tweets', 'aldolat-twitter' ),
 		'intro_text'         => '',
 		'screen_name'        => '',
 		'count'              => 3,

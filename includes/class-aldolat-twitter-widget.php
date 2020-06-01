@@ -159,7 +159,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 
 			<?php
 			// Title.
-			pinboard_bookmarks_form_input_text(
+			aldolat_twitter_form_input_text(
 				esc_html__( 'Title', 'aldolat-twitter' ),
 				$this->get_field_id( 'title' ),
 				$this->get_field_name( 'title' ),
@@ -172,7 +172,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 
 			<?php
 			// Introductory text.
-			pinboard_bookmarks_form_textarea(
+			aldolat_twitter_form_textarea(
 				esc_html__( 'Place this text after the title', 'aldolat-twitter' ),
 				$this->get_field_id( 'intro_text' ),
 				$this->get_field_name( 'intro_text' ),
@@ -187,7 +187,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 
 			<?php
 			// Username.
-			pinboard_bookmarks_form_input_text(
+			aldolat_twitter_form_input_text(
 				esc_html__( 'Username on Twitter:', 'aldolat-twitter' ),
 				$this->get_field_id( 'screen_name' ),
 				$this->get_field_name( 'screen_name' ),
@@ -197,7 +197,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			);
 
 			// Number of items.
-			pinboard_bookmarks_form_input_text(
+			aldolat_twitter_form_input_text(
 				esc_html__( 'Number of items:', 'aldolat-twitter' ),
 				$this->get_field_id( 'count' ),
 				$this->get_field_name( 'count' ),
@@ -206,7 +206,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			);
 
 			// Exclude replies.
-			pinboard_bookmarks_form_checkbox(
+			aldolat_twitter_form_checkbox(
 				esc_html__( 'Exclude replies', 'aldolat-twitter' ),
 				$this->get_field_id( 'exclude_replies' ),
 				$this->get_field_name( 'exclude_replies' ),
@@ -214,7 +214,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			);
 
 			// Include retweets.
-			pinboard_bookmarks_form_checkbox(
+			aldolat_twitter_form_checkbox(
 				esc_html__( 'Include retweets', 'aldolat-twitter' ),
 				$this->get_field_id( 'include_rts' ),
 				$this->get_field_name( 'include_rts' ),
@@ -222,7 +222,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			);
 
 			// Cache.
-			pinboard_bookmarks_form_input_text(
+			aldolat_twitter_form_input_text(
 				esc_html__( 'Cache duration:', 'aldolat-twitter' ),
 				$this->get_field_id( 'cache_duration' ),
 				$this->get_field_name( 'cache_duration' ),
@@ -236,28 +236,28 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 
 			<?php
 			// Consumer key.
-			pinboard_bookmarks_form_input_text(
+			aldolat_twitter_form_input_text(
 				esc_html__( 'Consumer Key:', 'aldolat-twitter' ),
 				$this->get_field_id( 'consumer_key' ),
 				$this->get_field_name( 'consumer_key' ),
 				esc_attr( $instance['consumer_key'] )
 			);
 			// Consumer secret.
-			pinboard_bookmarks_form_input_text(
+			aldolat_twitter_form_input_text(
 				esc_html__( 'Consumer secret:', 'aldolat-twitter' ),
 				$this->get_field_id( 'consumer_secret' ),
 				$this->get_field_name( 'consumer_secret' ),
 				esc_attr( $instance['consumer_secret'] )
 			);
 			// Oauth token.
-			pinboard_bookmarks_form_input_text(
+			aldolat_twitter_form_input_text(
 				esc_html__( 'Oauth token:', 'aldolat-twitter' ),
 				$this->get_field_id( 'oauth_token' ),
 				$this->get_field_name( 'oauth_token' ),
 				esc_attr( $instance['oauth_token'] )
 			);
 			// Oauth token secret.
-			pinboard_bookmarks_form_input_text(
+			aldolat_twitter_form_input_text(
 				esc_html__( 'Oauth token secret:', 'aldolat-twitter' ),
 				$this->get_field_id( 'oauth_token_secret' ),
 				$this->get_field_name( 'oauth_token_secret' ),

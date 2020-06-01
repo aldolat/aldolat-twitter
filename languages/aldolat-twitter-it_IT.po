@@ -5,16 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aldolat Twitter 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aldolat-twitter\n"
+"POT-Creation-Date: 2020-06-01T17:59:17+02:00\n"
+"PO-Revision-Date: 2020-06-01 17:40+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-06-01T17:34:24+02:00\n"
-"PO-Revision-Date: 2020-06-01 17:40+0200\n"
 "X-Generator: Lokalize 20.04.1\n"
 "X-Domain: aldolat-twitter\n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Plugin Name of the plugin
@@ -38,6 +38,11 @@ msgstr "Aldo Latino"
 msgid "https://www.aldolat.it/"
 msgstr "https://www.aldolat.it/"
 
+#: includes/aldolat-twitter-functions.php:33
+#: includes/class-aldolat-twitter-widget.php:167
+msgid "My latest tweets"
+msgstr "I miei ultimi tweet"
+
 #: includes/class-aldolat-twitter-widget.php:30
 msgid "Publish your tweets in your blog"
 msgstr "Pubblica i tuoi tweet nel tuo blog"
@@ -49,10 +54,6 @@ msgstr "Titolo del widget"
 #: includes/class-aldolat-twitter-widget.php:163
 msgid "Title"
 msgstr "Titolo"
-
-#: includes/class-aldolat-twitter-widget.php:167
-msgid "My latest tweets"
-msgstr "I miei ultimi tweet"
 
 #: includes/class-aldolat-twitter-widget.php:171
 msgid "Introductory text"

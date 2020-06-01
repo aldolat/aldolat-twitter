@@ -41,7 +41,7 @@ function aldolat_twitter_form_label( $label, $id ) {
  * @uses aldolat_twitter_form_label
  */
 function aldolat_twitter_form_input_text( $label, $id, $name, $value, $placeholder = '', $comment = '', $style = '', $class = '' ) {
-	$class = rtrim( 'widefat pinboard-bookmarks-input ' . $class );
+	$class = rtrim( 'widefat aldolat-twitter-input ' . $class );
 
 	if ( $style ) {
 		echo '<p style="' . esc_attr( $style ) . '">';
@@ -111,7 +111,7 @@ function aldolat_twitter_form_textarea( $label, $id, $name, $text, $placeholder 
  * @since 1.12
  */
 function aldolat_twitter_form_checkbox( $label, $id, $name, $checked, $comment = '', $class = '' ) {
-	$class = rtrim( 'checkbox pinboard-bookmarks-checkbox ' . $class );
+	$class = rtrim( 'checkbox aldolat-twitter-checkbox ' . $class );
 	?>
 	<p>
 		<input class="<?php echo esc_attr( $class ); ?>" type="checkbox" <?php checked( $checked ); ?> id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" />
@@ -139,7 +139,7 @@ function aldolat_twitter_form_checkbox( $label, $id, $name, $checked, $comment =
  * @since 1.12
  */
 function aldolat_twitter_form_select( $label, $id, $name, $options, $value, $comment = '', $class = '' ) {
-	$class = rtrim( 'pinboard-bookmarks-select ' . $class );
+	$class = rtrim( 'aldolat-twitter-select ' . $class );
 	?>
 	<p>
 		<?php aldolat_twitter_form_label( $label, $id ); ?>
