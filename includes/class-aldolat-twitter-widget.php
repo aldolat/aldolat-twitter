@@ -163,7 +163,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			<?php
 			// Title.
 			aldolat_twitter_form_input_text(
-				esc_html__( 'Title', 'aldolat-twitter' ),
+				esc_html__( 'Title:', 'aldolat-twitter' ),
 				$this->get_field_id( 'title' ),
 				$this->get_field_name( 'title' ),
 				esc_attr( $instance['title'] ),
@@ -176,7 +176,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			<?php
 			// Introductory text.
 			aldolat_twitter_form_textarea(
-				esc_html__( 'Place this text after the title', 'aldolat-twitter' ),
+				esc_html__( 'Place this text after the title:', 'aldolat-twitter' ),
 				$this->get_field_id( 'intro_text' ),
 				$this->get_field_name( 'intro_text' ),
 				$instance['intro_text'],
