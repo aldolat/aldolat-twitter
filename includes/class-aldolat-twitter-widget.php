@@ -88,6 +88,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			'consumer_secret'    => $instance['consumer_secret'],
 			'oauth_token'        => $instance['oauth_token'],
 			'oauth_token_secret' => $instance['oauth_token_secret'],
+			'widget_id'          => $args['widget_id'],
 		);
 		aldolat_twitter_tweets( $params );
 

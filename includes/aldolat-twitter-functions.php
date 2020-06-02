@@ -60,12 +60,18 @@ function aldolat_twitter_load_widget() {
 function aldolat_twitter_get_tweets( $args ) {
 	$html = '';
 
-	$feed = get_transient( 'aldolat-twitter-tweets' );
+	/*
+	 * Remove any non-digit from the widget ID.
+	 * For example: 'aldolat_twitter_widget-2' becomes '2'.
+	 */
+	$widget_id = preg_replace( '/\D/', '', $args['widget_id'] );
+
+	$feed = get_transient( 'aldolat-twitter-tweets-' . $widget_id );
 
 	if ( false === $feed ) {
 		$twitter_getter = new Aldolat_Twitter( $args );
 		$html           = $twitter_getter->fetch();
-		set_transient( 'aldolat-twitter-tweets', $html, $args['cache_duration'] * MINUTE_IN_SECONDS );
+		set_transient( 'aldolat-twitter-tweets-' . $widget_id, $html, $args['cache_duration'] * MINUTE_IN_SECONDS );
 	} else {
 		$html = $feed;
 	}
