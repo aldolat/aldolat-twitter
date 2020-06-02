@@ -2,7 +2,7 @@
 /**
  * Aldolat Twitter Uninstall
  *
- * @since 1.0.0
+ * @since 0.0.1
  * @package AldolatTwitter
  */
 
@@ -11,6 +11,12 @@ if ( ! defined( 'ABSPATH' ) && ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit();
 }
 
+/**
+ * Uninstall the options and transients from the database.
+ *
+ * @since 0.0.1
+ * @since 0.0.3 Added removal of transients.
+ */
 function aldolat_twitter_uninstall() {
 	global $wpdb;
 
