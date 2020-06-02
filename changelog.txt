@@ -1,5 +1,11 @@
 == Changelog ==
 
+= 0.0.3 =
+
+* Uninstall removes all the transients now.
+* Improved the cache management, so that we can create multiple cached widgets.
+* Added option for opening links in a new tab
+
 = 0.0.2 =
 
 * First completion of the plugin.

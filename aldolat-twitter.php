@@ -18,7 +18,7 @@
  * Plugin URI: https://dev.aldolat.it/projects/aldolat-twitter/
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
- * Version: 0.0.2
+ * Version: 0.0.3
  * License: GPLv3 or later
  * Text Domain: aldolat-twitter
  * Domain Path: /languages/
@@ -42,7 +42,9 @@
  */
 
 /**
- * TODO: Change the caching so that the user can use more than one widget.
+ * TODO: Add option for getting tweets older or newer than a certain tweet.
+ *       See: https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline
+ * TODO: Add option for displaying date and time.
  */
 
 /**
@@ -70,7 +72,7 @@ function aldolat_twitter_setup() {
 	/*
 	 * Define the version of the plugin.
 	 */
-	define( 'ALDOLAT_TWITTER_PLUGIN_VERSION', '0.0.2' );
+	define( 'ALDOLAT_TWITTER_PLUGIN_VERSION', '0.0.3' );
 
 	/*
 	 * Load the translation.

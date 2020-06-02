@@ -2,14 +2,14 @@
 /**
  * This file contains the functions used in the widget's forms
  *
- * @since 1.0
+ * @since 0.0.1
  * @package AldolatTwitter
  */
 
 /**
  * Prevent direct access to this file.
  *
- * @since 2.0
+ * @since 0.0.1
  */
 if ( ! defined( 'WPINC' ) ) {
 	exit( 'No script kiddies please!' );
@@ -18,7 +18,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Create a form label to be used in the widget panel.
  *
- * @since 1.12
+ * @since 0.0.1
  * @param string $label The label to display.
  * @param string $id The id of the label.
  */
@@ -29,7 +29,7 @@ function aldolat_twitter_form_label( $label, $id ) {
 /**
  * Create a form text input to be used in the widget panel.
  *
- * @since 1.12
+ * @since 0.0.1
  * @param string $label The label to display.
  * @param string $id The id of the label.
  * @param string $name The name of the input form.
@@ -77,7 +77,7 @@ function aldolat_twitter_form_input_text( $label, $id, $name, $value, $placehold
  * @param string $placeholder The HTML placeholder for the input form.
  * @param string $comment An optional comment to display. It is displayed below the textarea form.
  * @param string $style An optional inline style.
- * @since 1.12
+ * @since 0.0.1
  */
 function aldolat_twitter_form_textarea( $label, $id, $name, $text, $placeholder = '', $comment = '', $style = '' ) {
 	echo '<p>';
@@ -108,7 +108,7 @@ function aldolat_twitter_form_textarea( $label, $id, $name, $text, $placeholder 
  * @param string $checked If the option is checked.
  * @param string $comment An optional comment to display. It is displayed below the checkbox form.
  * @param string $class An optional CSS class.
- * @since 1.12
+ * @since 0.0.1
  */
 function aldolat_twitter_form_checkbox( $label, $id, $name, $checked, $comment = '', $class = '' ) {
 	$class = rtrim( 'checkbox aldolat-twitter-checkbox ' . $class );
@@ -136,7 +136,7 @@ function aldolat_twitter_form_checkbox( $label, $id, $name, $checked, $comment =
  * @param string $value The values of the select form.
  * @param string $comment An optional comment to display. It is displayed below the select form.
  * @param string $class The custom class for the select element.
- * @since 1.12
+ * @since 0.0.1
  */
 function aldolat_twitter_form_select( $label, $id, $name, $options, $value, $comment = '', $class = '' ) {
 	$class = rtrim( 'aldolat-twitter-select ' . $class );
