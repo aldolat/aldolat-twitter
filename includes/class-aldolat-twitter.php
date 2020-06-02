@@ -24,10 +24,49 @@ class Aldolat_Twitter {
 	 */
 	private $connection;
 
+	/**
+	 * The username on Twitter.
+	 *
+	 * @var string $screen_name
+	 * @access private
+	 * @since 0.0.1
+	 */
 	private $screen_name;
+
+	/**
+	 * The number of tweets to retrieve.
+	 *
+	 * @var integer $count
+	 * @access private
+	 * @since 0.0.1
+	 */
 	private $count;
+
+	/**
+	 * Whether to esclude replies.
+	 *
+	 * @var boolean $exclude_replies
+	 * @access private
+	 * @since 0.0.1
+	 */
 	private $exclude_replies;
+
+	/**
+	 * Whether to include retweets.
+	 *
+	 * @var boolean $include_rts
+	 * @access private
+	 * @since 0.0.2
+	 */
 	private $include_rts;
+
+	/**
+	 * Whether the links should be opened in a new tab.
+	 *
+	 * @var boolean $new_tab
+	 * @access private
+	 * @since 0.0.3
+	 */
 	private $new_tab;
 
 	/**
@@ -66,11 +105,25 @@ class Aldolat_Twitter {
 		$this->new_tab         = $args['new_tab'];
 	}
 
+	/**
+	 * Returns the difference in seconds between the tweet time and now.
+	 *
+	 * @param integer $t The formatted datetime of the tweet.
+	 * @return integer The difference in seconds
+	 * @since 0.0.1
+	 */
 	private function relative_time( $t ) {
 		$new_tweet_time = strtotime( $t );
 		return human_time_diff( $new_tweet_time, time() );
 	}
 
+	/**
+	 * Format the tweet adding HTML links to URL, mentions, and hashtags.
+	 *
+	 * @param object $tweet The object containing the tweet.
+	 * @return string $tweet_text The resulting tweet with HTML.
+	 * @since 0.0.1
+	 */
 	private function format( $tweet ) {
 		$tweet_text     = $tweet->full_text;
 		$tweet_entities = array();
@@ -114,6 +167,12 @@ class Aldolat_Twitter {
 		return $tweet_text;
 	}
 
+	/**
+	 * Fetch the tweets from Twitter.
+	 *
+	 * @return string $html The final HTML with tweets.
+	 * @since 0.0.1
+	 */
 	public function fetch() {
 		$params = array(
 			'screen_name'     => $this->screen_name,
@@ -148,6 +207,16 @@ class Aldolat_Twitter {
 		return $html;
 	}
 
+	/**
+	 * Returns the datetime of the tweet using '... ago' form if the tweet is
+	 * not older than a day.
+	 *
+	 * The function respects the local offset time and the option defined by the
+	 * user about the formatting of date and time in the WordPress dashboard.
+	 *
+	 * @param string $tweet_time The formatted time of the tweet.
+	 * @return string $time The datetime of the tweet or the '... ago' form.
+	 */
 	private function get_tweet_time( $tweet_time ) {
 		// Get the local GMT offset and date/time formats.
 		$local_offset    = (int) get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
@@ -156,8 +225,8 @@ class Aldolat_Twitter {
 		// Convert tweet time into UNIX timestamp and add local offset.
 		$unix_tweet_time = strtotime( $tweet_time ) + $local_offset;
 
-		// The tweet date/time is returned in the "... ago" form if the tweet is a week old.
-		if ( WEEK_IN_SECONDS < ( time() - $unix_tweet_time ) ) {
+		// The tweet date/time is returned in the "... ago" form if the tweet is up to a day old.
+		if ( DAY_IN_SECONDS < ( time() - $unix_tweet_time ) ) {
 			$time = gmdate( $datetime_format, $unix_tweet_time );
 		} else {
 			$time = $this->relative_time( $tweet_time ) . ' ' . esc_html__( 'ago', 'aldolat-twitter' );
