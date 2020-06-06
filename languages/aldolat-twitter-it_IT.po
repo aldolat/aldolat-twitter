@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aldolat Twitter 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aldolat-twitter\n"
-"POT-Creation-Date: 2020-06-02T10:39:36+02:00\n"
-"PO-Revision-Date: 2020-06-02 07:50+0200\n"
+"POT-Creation-Date: 2020-06-05T21:55:47+02:00\n"
+"PO-Revision-Date: 2020-06-05 21:56+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -131,6 +131,10 @@ msgstr "Oauth token:"
 msgid "Oauth token secret:"
 msgstr "Oauth token secret:"
 
-#: includes/class-aldolat-twitter.php:163
+#: includes/class-aldolat-twitter.php:205
+msgid "by"
+msgstr "di"
+
+#: includes/class-aldolat-twitter.php:238
 msgid "ago"
 msgstr "fa"

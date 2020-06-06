@@ -184,7 +184,10 @@ class Aldolat_Twitter {
 
 		$html = '<div id="twitter-feed">';
 
-		$resp   = $this->connection->get( 'statuses/user_timeline', $params );
+		// Get user timeline.
+		$resp = $this->connection->get( 'statuses/user_timeline', $params );
+		// Get favorites.
+		//$resp   = $this->connection->get( 'favorites/list', $params );
 		$tweets = json_decode( $resp );
 
 		if ( $this->new_tab ) {
@@ -198,6 +201,9 @@ class Aldolat_Twitter {
 			$html .= '<a ' . $new_tab_text . 'href="https://twitter.com/' . $this->screen_name . '/status/' . $tweet->id_str . '">';
 			$html .= '<time class="tweet-date">' . $this->get_tweet_time( $tweet->created_at ) . '</time>';
 			$html .= '</a>';
+			$html .= '<span class="tweet-author">';
+			$html .= ' ' . esc_html__( 'by', 'aldolat-twitter' ) . ' <a ' . $new_tab_text . 'href="https://twitter.com/' . $this->screen_name . '">' . $this->screen_name . '</a>';
+			$html .= '</span>';
 			$html .= '<div class="tweet-body">' . $this->format( $tweet ) . '</div>';
 			$html .= '</div>';
 		}

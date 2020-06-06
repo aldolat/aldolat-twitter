@@ -42,6 +42,7 @@
  */
 
 /**
+ * TODO: Add option to get user timeline or favorites (see lines 188 and 190 in `class-aldolat-twitter.php` ).
  * TODO: Add option for getting tweets older or newer than a certain tweet.
  *       See: https://developer.twitter.com/en/docs/tweets/timelines/api-reference/get-statuses-user_timeline
  * TODO: Add option for displaying date and time.
