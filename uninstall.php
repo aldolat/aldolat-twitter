@@ -49,7 +49,9 @@ function aldolat_twitter_uninstall() {
 	foreach ( $transients as $transient ) {
 		if ( ! strpos( $transient, 'timeout' ) ) {
 			$transient = str_replace( '_transient_', '', $transient );
-			delete_transient( $transient );
+			if ( get_transient( $transient ) ) {
+				delete_transient( $transient );
+			}
 		}
 	}
 

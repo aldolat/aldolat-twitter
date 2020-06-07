@@ -184,9 +184,9 @@ class Aldolat_Twitter {
 
 		$html = '<div id="twitter-feed">';
 
-		// Get user timeline.
+		// Grab user timeline.
 		$resp = $this->connection->get( 'statuses/user_timeline', $params );
-		// Get favorites.
+		// Grab the favorite tweets.
 		//$resp   = $this->connection->get( 'favorites/list', $params );
 		$tweets = json_decode( $resp );
 
