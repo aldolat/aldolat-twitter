@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Returns the default options.
+ * Return the default options.
  *
  * $defaults contains the default parameters:
  *    string  $title              The title of the widget.
@@ -55,45 +55,4 @@ function aldolat_twitter_get_defaults() {
 	);
 
 	return $defaults;
-}
-
-/**
- * The main function that gets the tweets.
- *
- * @param array $args Various options to get tweets.
- *                    This function is fired by Aldolat_Twitter_Widget class.
- *
- * @return string $html The HTML containing the tweets.
- * @since 0.0.1
- */
-function aldolat_twitter_get_tweets( $args ) {
-	$html = '';
-
-	/*
-	 * Remove any non-digit from the widget ID.
-	 * For example: 'aldolat_twitter_widget-2' becomes '2'.
-	 */
-	$widget_id = preg_replace( '/\D/', '', $args['widget_id'] );
-
-	$feed = get_transient( 'aldolat-twitter-tweets-' . $widget_id );
-
-	if ( false === $feed ) {
-		$twitter_getter = new Aldolat_Twitter_Core( $args );
-		$html           = $twitter_getter->fetch();
-		set_transient( 'aldolat-twitter-tweets-' . $widget_id, $html, $args['cache_duration'] * MINUTE_IN_SECONDS );
-	} else {
-		$html = $feed;
-	}
-
-	return $html;
-}
-
-/**
- * An helper function to echo the HTML containing the tweets.
- *
- * @uses aldolat_twitter_get_tweets().
- * @since 0.0.1
- */
-function aldolat_twitter_tweets( $args ) {
-	echo aldolat_twitter_get_tweets( $args );
 }

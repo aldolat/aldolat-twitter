@@ -16,7 +16,7 @@ use TwitterOAuth\TwitterOAuth;
  */
 class Aldolat_Twitter_Core {
 	/**
-	 * The property that contain an instance of TwitterOauth.
+	 * The property that contains an instance of TwitterOauth.
 	 *
 	 * @var object $connection
 	 * @access private
@@ -25,49 +25,13 @@ class Aldolat_Twitter_Core {
 	private $connection;
 
 	/**
-	 * The username on Twitter.
+	 * The array with all plugin settings.
 	 *
-	 * @var string $screen_name
+	 * @var array $plugin_settings
 	 * @access private
-	 * @since 0.0.1
+	 * @since 0.0.4
 	 */
-	private $screen_name;
-
-	/**
-	 * The number of tweets to retrieve.
-	 *
-	 * @var integer $count
-	 * @access private
-	 * @since 0.0.1
-	 */
-	private $count;
-
-	/**
-	 * Whether to esclude replies.
-	 *
-	 * @var boolean $exclude_replies
-	 * @access private
-	 * @since 0.0.1
-	 */
-	private $exclude_replies;
-
-	/**
-	 * Whether to include retweets.
-	 *
-	 * @var boolean $include_rts
-	 * @access private
-	 * @since 0.0.2
-	 */
-	private $include_rts;
-
-	/**
-	 * Whether the links should be opened in a new tab.
-	 *
-	 * @var boolean $new_tab
-	 * @access private
-	 * @since 0.0.3
-	 */
-	private $new_tab;
+	private $plugin_settings = array();
 
 	/**
 	 * Constructon method.
@@ -75,34 +39,75 @@ class Aldolat_Twitter_Core {
 	 * @since 0.0.1
 	 */
 	public function __construct( $args ) {
-		$defaults = array(
-			'screen_name'        => '',
-			'count'              => 5,
-			'exclude_replies'    => false,
-			'include_rts'        => true,
-			'new_tab'            => false,
-			'consumer_key'       => '',
-			'consumer_secret'    => '',
-			'oauth_token'        => '',
-			'oauth_token_secret' => '',
-		);
+		$defaults = aldolat_twitter_get_defaults();
 		wp_parse_args( $args, $defaults );
 
-		$settings = array(
-			'consumer_key'       => $args['consumer_key'],
-			'consumer_secret'    => $args['consumer_secret'],
-			'oauth_token'        => $args['oauth_token'],
-			'oauth_token_secret' => $args['oauth_token_secret'],
-			'output_format'      => 'text',
+		$this->plugin_settings = $args;
+
+		$this->connection = new TwitterOAuth(
+			array(
+				'consumer_key'       => $this->plugin_settings['consumer_key'],
+				'consumer_secret'    => $this->plugin_settings['consumer_secret'],
+				'oauth_token'        => $this->plugin_settings['oauth_token'],
+				'oauth_token_secret' => $this->plugin_settings['oauth_token_secret'],
+				'output_format'      => 'text',
+			)
+		);
+	}
+
+	/**
+	 * Fetch the tweets from Twitter.
+	 *
+	 * @return string $html The final HTML with tweets.
+	 * @since 0.0.1
+	 */
+	public function fetch() {
+		$params = array(
+			'screen_name'     => $this->plugin_settings['screen_name'],
+			'count'           => $this->plugin_settings['count'],
+			'exclude_replies' => $this->plugin_settings['exclude_replies'],
+			'include_rts'     => $this->plugin_settings['include_rts'],
+			'tweet_mode'      => 'extended',
 		);
 
-		$this->connection = new TwitterOAuth( $settings );
+		$html = '<div id="twitter-feed">';
 
-		$this->screen_name     = $args['screen_name'];
-		$this->count           = $args['count'];
-		$this->exclude_replies = $args['exclude_replies'];
-		$this->include_rts     = $args['include_rts'];
-		$this->new_tab         = $args['new_tab'];
+		$widget_id = preg_replace( '/\D/', '', $this->plugin_settings['widget_id'] );
+
+		$feed = get_transient( 'aldolat-twitter-tweets-' . $widget_id );
+
+		if ( false === $feed ) {
+			// Grab user timeline.
+			$resp = $this->connection->get( 'statuses/user_timeline', $params );
+			// Grab the favorite tweets.
+			//$resp   = $this->connection->get( 'favorites/list', $params );
+			$tweets = json_decode( $resp );
+			set_transient( 'aldolat-twitter-tweets-' . $widget_id, $tweets, $this->plugin_settings['cache_duration'] * MINUTE_IN_SECONDS );
+		} else {
+			$tweets = $feed;
+		}
+
+		if ( $this->plugin_settings['new_tab'] ) {
+			$new_tab_text = 'rel="external noreferrer nofollow noopener" target="_blank" ';
+		} else {
+			$new_tab_text = '';
+		}
+
+		foreach ( $tweets as $tweet ) {
+			$html .= '<div class="tweet">';
+			$html .= '<a ' . $new_tab_text . 'href="https://twitter.com/' . $this->plugin_settings['screen_name'] . '/status/' . $tweet->id_str . '">';
+			$html .= '<time class="tweet-date">' . $this->get_tweet_time( $tweet->created_at ) . '</time>';
+			$html .= '</a>';
+			$html .= '<span class="tweet-author">';
+			$html .= ' ' . esc_html__( 'by', 'aldolat-twitter' ) . ' <a ' . $new_tab_text . 'href="https://twitter.com/' . $this->plugin_settings['screen_name'] . '">' . $this->plugin_settings['screen_name'] . '</a>';
+			$html .= '</span>';
+			$html .= '<div class="tweet-body">' . $this->format( $tweet ) . '</div>';
+			$html .= '</div>';
+		}
+
+		$html .= '</div>';
+
+		return $html;
 	}
 
 	/**
@@ -128,7 +133,7 @@ class Aldolat_Twitter_Core {
 		$tweet_text     = $tweet->full_text;
 		$tweet_entities = array();
 
-		if ( $this->new_tab ) {
+		if ( $this->plugin_settings['new_tab'] ) {
 			$new_tab_text = 'rel="external noreferrer nofollow noopener" target="_blank" ';
 		} else {
 			$new_tab_text = '';
@@ -165,52 +170,6 @@ class Aldolat_Twitter_Core {
 		}
 
 		return $tweet_text;
-	}
-
-	/**
-	 * Fetch the tweets from Twitter.
-	 *
-	 * @return string $html The final HTML with tweets.
-	 * @since 0.0.1
-	 */
-	public function fetch() {
-		$params = array(
-			'screen_name'     => $this->screen_name,
-			'count'           => $this->count,
-			'exclude_replies' => $this->exclude_replies,
-			'include_rts'     => $this->include_rts,
-			'tweet_mode'      => 'extended',
-		);
-
-		$html = '<div id="twitter-feed">';
-
-		// Grab user timeline.
-		$resp = $this->connection->get( 'statuses/user_timeline', $params );
-		// Grab the favorite tweets.
-		//$resp   = $this->connection->get( 'favorites/list', $params );
-		$tweets = json_decode( $resp );
-
-		if ( $this->new_tab ) {
-			$new_tab_text = 'rel="external noreferrer nofollow noopener" target="_blank" ';
-		} else {
-			$new_tab_text = '';
-		}
-
-		foreach ( $tweets as $tweet ) {
-			$html .= '<div class="tweet">';
-			$html .= '<a ' . $new_tab_text . 'href="https://twitter.com/' . $this->screen_name . '/status/' . $tweet->id_str . '">';
-			$html .= '<time class="tweet-date">' . $this->get_tweet_time( $tweet->created_at ) . '</time>';
-			$html .= '</a>';
-			$html .= '<span class="tweet-author">';
-			$html .= ' ' . esc_html__( 'by', 'aldolat-twitter' ) . ' <a ' . $new_tab_text . 'href="https://twitter.com/' . $this->screen_name . '">' . $this->screen_name . '</a>';
-			$html .= '</span>';
-			$html .= '<div class="tweet-body">' . $this->format( $tweet ) . '</div>';
-			$html .= '</div>';
-		}
-
-		$html .= '</div>';
-
-		return $html;
 	}
 
 	/**
