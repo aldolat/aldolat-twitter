@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 0.0.4 =
+
+* Added tweet author.
+* Refactored the plugin.
+
 = 0.0.3 =
 
 * Uninstall removes all the transients now.

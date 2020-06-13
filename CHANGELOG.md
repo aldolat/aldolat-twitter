@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.0.4] - 2020-06-13
+### Added
+* Added tweet author.
+* Refactored the plugin.
+
 ## [0.0.3] - 2020-06-02
 ### Added
 * Uninstall removes all the transients now.
