@@ -58,15 +58,6 @@ function aldolat_twitter_get_defaults() {
 }
 
 /**
- * Register the widget.
- *
- * @since 0.0.1
- */
-function aldolat_twitter_load_widget() {
-	register_widget( 'Aldolat_Twitter_Widget' );
-}
-
-/**
  * The main function that gets the tweets.
  *
  * @param array $args Various options to get tweets.
@@ -87,7 +78,7 @@ function aldolat_twitter_get_tweets( $args ) {
 	$feed = get_transient( 'aldolat-twitter-tweets-' . $widget_id );
 
 	if ( false === $feed ) {
-		$twitter_getter = new Aldolat_Twitter( $args );
+		$twitter_getter = new Aldolat_Twitter_Core( $args );
 		$html           = $twitter_getter->fetch();
 		set_transient( 'aldolat-twitter-tweets-' . $widget_id, $html, $args['cache_duration'] * MINUTE_IN_SECONDS );
 	} else {

@@ -18,7 +18,7 @@
  * Plugin URI: https://dev.aldolat.it/projects/aldolat-twitter/
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
- * Version: 0.0.3
+ * Version: 0.0.5
  * License: GPLv3 or later
  * Text Domain: aldolat-twitter
  * Domain Path: /languages/
@@ -57,55 +57,13 @@ if ( ! defined( 'WPINC' ) ) {
 	exit( 'No script kiddies please!' );
 }
 
-/**
- * Launch Aldolat Twitter.
- *
- * @since 0.0.1
- */
-add_action( 'plugins_loaded', 'aldolat_twitter_setup' );
-
-/**
- * Setup the plugin and fire the necessary files.
- *
- * @since 0.0.1
- */
-function aldolat_twitter_setup() {
-	/*
-	 * Define the version of the plugin.
-	 */
-	define( 'ALDOLAT_TWITTER_PLUGIN_VERSION', '0.0.3' );
-
-	/*
-	 * Load the translation.
-	 *
-	 * @since 0.0.1
-	 */
-	load_plugin_textdomain( 'aldolat-twitter', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-
-	/*
-	 * Include all necessary PHP files.
-	 *
-	 * @since 0.0.1
-	 */
-	// Load the TwitterOAuth library.
-	require_once plugin_dir_path( __FILE__ ) . 'TwitterOAuth/TwitterOAuth.php';
-	require_once plugin_dir_path( __FILE__ ) . 'TwitterOAuth/Exception/TwitterException.php';
-	// Load the class for Twitter.
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-aldolat-twitter.php';
-	// Load the init functions.
-	require_once plugin_dir_path( __FILE__ ) . 'includes/aldolat-twitter-functions.php';
-	// Load the widget's form functions.
-	require_once plugin_dir_path( __FILE__ ) . 'includes/aldolat-twitter-widget-form-functions.php';
-	// Load the widget's PHP file.
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-aldolat-twitter-widget.php';
-
-	/*
-	 * Load Aldolat Twitter's widgets.
-	 *
-	 * @since 0.0.1
-	 */
-	add_action( 'widgets_init', 'aldolat_twitter_load_widget' );
+function aldolat_twitter_run() {
+	require_once 'includes/class-aldolat-twitter.php';
+	$aldolat_twitter = new Aldolat_Twitter();
+	$aldolat_twitter->run();
 }
+
+aldolat_twitter_run();
 
 /*
  * CODE IS POETRY
