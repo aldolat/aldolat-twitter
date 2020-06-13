@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Creates the widget and display it.
+ * Create the widget and display it.
  *
  * @since 0.0.1
  */
@@ -90,7 +90,8 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			'oauth_token_secret' => $instance['oauth_token_secret'],
 			'widget_id'          => $args['widget_id'],
 		);
-		aldolat_twitter_tweets( $params );
+		$aldolat_tweets = new Aldolat_Twitter_Core( $params );
+		echo $aldolat_tweets->fetch();
 
 		echo $args['after_widget'];
 
