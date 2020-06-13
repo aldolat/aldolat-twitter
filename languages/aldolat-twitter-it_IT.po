@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aldolat Twitter 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aldolat-twitter\n"
-"POT-Creation-Date: 2020-06-05T21:55:47+02:00\n"
+"POT-Creation-Date: 2020-06-13T22:19:00+02:00\n"
 "PO-Revision-Date: 2020-06-05 21:56+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -39,102 +39,102 @@ msgid "https://www.aldolat.it/"
 msgstr "https://www.aldolat.it/"
 
 #: includes/aldolat-twitter-functions.php:42
-#: includes/class-aldolat-twitter-widget.php:170
+#: includes/class-aldolat-twitter-widget.php:171
 msgid "My latest tweets"
 msgstr "I miei ultimi tweet"
+
+#: includes/class-aldolat-twitter-core.php:102
+msgid "by"
+msgstr "di"
+
+#: includes/class-aldolat-twitter-core.php:197
+msgid "ago"
+msgstr "fa"
 
 #: includes/class-aldolat-twitter-widget.php:30
 msgid "Publish your tweets in your blog"
 msgstr "Pubblica i tuoi tweet nel tuo blog"
 
-#: includes/class-aldolat-twitter-widget.php:161
+#: includes/class-aldolat-twitter-widget.php:162
 msgid "Title of the widget"
 msgstr "Titolo del widget"
 
-#: includes/class-aldolat-twitter-widget.php:166
+#: includes/class-aldolat-twitter-widget.php:167
 msgid "Title:"
 msgstr "Titolo:"
 
-#: includes/class-aldolat-twitter-widget.php:174
+#: includes/class-aldolat-twitter-widget.php:175
 msgid "Introductory text"
 msgstr "Testo introduttivo"
 
-#: includes/class-aldolat-twitter-widget.php:179
+#: includes/class-aldolat-twitter-widget.php:180
 msgid "Place this text after the title:"
 msgstr "Metti questo testo dopo il titolo:"
 
-#: includes/class-aldolat-twitter-widget.php:183
+#: includes/class-aldolat-twitter-widget.php:184
 msgid "These are my latest tweets. Follow me on Twitter!"
 msgstr "Questi sono i miei ultimi tweet. Seguimi su Twitter!"
 
-#: includes/class-aldolat-twitter-widget.php:184
+#: includes/class-aldolat-twitter-widget.php:185
 msgid "You can use some HTML, as you would do when writing a post."
 msgstr "Puoi usare anche dell'HTML, come quando scrivi un articolo."
 
-#: includes/class-aldolat-twitter-widget.php:189
+#: includes/class-aldolat-twitter-widget.php:190
 msgid "Setup"
 msgstr "Impostazioni"
 
-#: includes/class-aldolat-twitter-widget.php:194
+#: includes/class-aldolat-twitter-widget.php:195
 msgid "Username on Twitter:"
 msgstr "Nome utente su Twitter:"
 
-#: includes/class-aldolat-twitter-widget.php:198
+#: includes/class-aldolat-twitter-widget.php:199
 msgid "username"
 msgstr "nome_utente"
 
-#: includes/class-aldolat-twitter-widget.php:199
+#: includes/class-aldolat-twitter-widget.php:200
 msgid "This is the only mandatory option."
 msgstr "Questa è l'unica opzione obbligatoria."
 
-#: includes/class-aldolat-twitter-widget.php:204
+#: includes/class-aldolat-twitter-widget.php:205
 msgid "Number of items:"
 msgstr "Numero di voci:"
 
-#: includes/class-aldolat-twitter-widget.php:213
+#: includes/class-aldolat-twitter-widget.php:214
 msgid "Exclude replies"
 msgstr "Escludi le risposte"
 
-#: includes/class-aldolat-twitter-widget.php:221
+#: includes/class-aldolat-twitter-widget.php:222
 msgid "Include retweets"
 msgstr "Includi i retweet"
 
-#: includes/class-aldolat-twitter-widget.php:229
+#: includes/class-aldolat-twitter-widget.php:230
 msgid "Cache duration:"
 msgstr "Durata della cache:"
 
-#: includes/class-aldolat-twitter-widget.php:234
+#: includes/class-aldolat-twitter-widget.php:235
 msgid "In minutes. The minimum accepted value is 5."
 msgstr "In minuti. Il valore minimo accettato è 5."
 
-#: includes/class-aldolat-twitter-widget.php:239
+#: includes/class-aldolat-twitter-widget.php:240
 msgid "Open links in a new browser tab"
 msgstr "Apri i link in una nuova scheda del browser"
 
-#: includes/class-aldolat-twitter-widget.php:246
+#: includes/class-aldolat-twitter-widget.php:247
 msgid "Twitter authentication"
 msgstr "Autenticazione su Twitter"
 
-#: includes/class-aldolat-twitter-widget.php:251
+#: includes/class-aldolat-twitter-widget.php:252
 msgid "Consumer Key:"
 msgstr "Consumer Key:"
 
-#: includes/class-aldolat-twitter-widget.php:258
+#: includes/class-aldolat-twitter-widget.php:259
 msgid "Consumer secret:"
 msgstr "Consumer secret:"
 
-#: includes/class-aldolat-twitter-widget.php:265
+#: includes/class-aldolat-twitter-widget.php:266
 msgid "Oauth token:"
 msgstr "Oauth token:"
 
-#: includes/class-aldolat-twitter-widget.php:272
+#: includes/class-aldolat-twitter-widget.php:273
 msgid "Oauth token secret:"
 msgstr "Oauth token secret:"
-
-#: includes/class-aldolat-twitter.php:205
-msgid "by"
-msgstr "di"
-
-#: includes/class-aldolat-twitter.php:238
-msgid "ago"
-msgstr "fa"
