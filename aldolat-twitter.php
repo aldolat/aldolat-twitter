@@ -18,7 +18,7 @@
  * Plugin URI: https://dev.aldolat.it/projects/aldolat-twitter/
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
- * Version: 0.0.4
+ * Version: 0.1.0
  * License: GPLv3 or later
  * Text Domain: aldolat-twitter
  * Domain Path: /languages/
@@ -57,6 +57,9 @@ if ( ! defined( 'WPINC' ) ) {
 	exit( 'No script kiddies please!' );
 }
 
+/**
+ * Run the class for setting up the plugin.
+ */
 function aldolat_twitter_run() {
 	require_once 'includes/class-aldolat-twitter.php';
 	$aldolat_twitter = new Aldolat_Twitter();

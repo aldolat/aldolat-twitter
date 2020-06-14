@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.1.0 =
+
+* Added new method for getting links attributes.
+
 = 0.0.4 =
 
 * Added tweet author.

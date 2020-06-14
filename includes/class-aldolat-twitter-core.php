@@ -1,6 +1,6 @@
 <?php
 /**
- * The plugin core class.
+ * The plugin class for managing tweets.
  *
  * @since 0.0.1
  * @package AldolatTwitter
@@ -31,12 +31,14 @@ class Aldolat_Twitter_Core {
 	 * @access private
 	 * @since 0.0.4
 	 */
-	private $plugin_settings = array();
+	private $plugin_settings;
 
 	/**
 	 * Constructon method.
 	 *
+	 * @param array $args The default parameters.
 	 * @since 0.0.1
+	 * @access public
 	 */
 	public function __construct( $args ) {
 		$defaults = aldolat_twitter_get_defaults();
@@ -60,6 +62,7 @@ class Aldolat_Twitter_Core {
 	 *
 	 * @return string $html The final HTML with tweets.
 	 * @since 0.0.1
+	 * @access public
 	 */
 	public function fetch() {
 		$params = array(
@@ -79,7 +82,7 @@ class Aldolat_Twitter_Core {
 		if ( false === $feed ) {
 			// Grab user timeline.
 			$resp = $this->connection->get( 'statuses/user_timeline', $params );
-			// Grab the favorite tweets.
+			// Grab favorite tweets.
 			//$resp   = $this->connection->get( 'favorites/list', $params );
 			$tweets = json_decode( $resp );
 			set_transient( 'aldolat-twitter-tweets-' . $widget_id, $tweets, $this->plugin_settings['cache_duration'] * MINUTE_IN_SECONDS );
@@ -87,11 +90,7 @@ class Aldolat_Twitter_Core {
 			$tweets = $feed;
 		}
 
-		if ( $this->plugin_settings['new_tab'] ) {
-			$new_tab_text = 'rel="external noreferrer nofollow noopener" target="_blank" ';
-		} else {
-			$new_tab_text = '';
-		}
+		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
 
 		foreach ( $tweets as $tweet ) {
 			$html .= '<div class="tweet">';
@@ -116,6 +115,7 @@ class Aldolat_Twitter_Core {
 	 * @param integer $t The formatted datetime of the tweet.
 	 * @return integer The difference in seconds
 	 * @since 0.0.1
+	 * @access private
 	 */
 	private function relative_time( $t ) {
 		$new_tweet_time = strtotime( $t );
@@ -128,16 +128,13 @@ class Aldolat_Twitter_Core {
 	 * @param object $tweet The object containing the tweet.
 	 * @return string $tweet_text The resulting tweet with HTML.
 	 * @since 0.0.1
+	 * @access private
 	 */
 	private function format( $tweet ) {
 		$tweet_text     = $tweet->full_text;
 		$tweet_entities = array();
 
-		if ( $this->plugin_settings['new_tab'] ) {
-			$new_tab_text = 'rel="external noreferrer nofollow noopener" target="_blank" ';
-		} else {
-			$new_tab_text = '';
-		}
+		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
 
 		foreach ( $tweet->entities->urls as $url ) {
 			$tweet_entities[] = array(
@@ -181,6 +178,8 @@ class Aldolat_Twitter_Core {
 	 *
 	 * @param string $tweet_time The formatted time of the tweet.
 	 * @return string $time The datetime of the tweet or the '... ago' form.
+	 * @since 0.0.1
+	 * @access private
 	 */
 	private function get_tweet_time( $tweet_time ) {
 		// Get the local GMT offset and date/time formats.
@@ -198,5 +197,23 @@ class Aldolat_Twitter_Core {
 		}
 
 		return $time;
+	}
+
+	/**
+	 * Get the HTML rel attribute for links.
+	 *
+	 * @param bool $new_tab Whether the browser should open links in a new tab.
+	 * @return string $text The rel and target attributes for links.
+	 * @since 0.1.0
+	 * @access private
+	 */
+	private function new_tab( $new_tab ) {
+		if ( $new_tab ) {
+			$text = 'rel="external noreferrer nofollow noopener" target="_blank" ';
+		} else {
+			$text = '';
+		}
+
+		return $text;
 	}
 }
