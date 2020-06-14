@@ -60,7 +60,7 @@ class Aldolat_Twitter_Core {
 	/**
 	 * Fetch the tweets from Twitter.
 	 *
-	 * @return string $html The final HTML with tweets.
+	 * @return array $tweets The array with with tweets.
 	 * @since 0.0.1
 	 * @access public
 	 */
@@ -72,8 +72,6 @@ class Aldolat_Twitter_Core {
 			'include_rts'     => $this->plugin_settings['include_rts'],
 			'tweet_mode'      => 'extended',
 		);
-
-		$html = '<div id="twitter-feed">';
 
 		$widget_id = preg_replace( '/\D/', '', $this->plugin_settings['widget_id'] );
 
@@ -90,23 +88,43 @@ class Aldolat_Twitter_Core {
 			$tweets = $feed;
 		}
 
+		return $tweets;
+	}
+
+	/**
+	 * Get the tweets.
+	 *
+	 * @return string $output The final HTML with tweets.
+	 * @since 0.1.0
+	 * @access public
+	 */
+	public function get_tweets() {
+		$tweets = $this->fetch();
+
+		$output = '<div id="twitter-feed">';
+
 		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
 
+		$twitter_link = 'href="https://twitter.com/' . $this->plugin_settings['screen_name'];
+
 		foreach ( $tweets as $tweet ) {
-			$html .= '<div class="tweet">';
-			$html .= '<a ' . $new_tab_text . 'href="https://twitter.com/' . $this->plugin_settings['screen_name'] . '/status/' . $tweet->id_str . '">';
-			$html .= '<time class="tweet-date">' . $this->get_tweet_time( $tweet->created_at ) . '</time>';
-			$html .= '</a>';
-			$html .= '<span class="tweet-author">';
-			$html .= ' ' . esc_html__( 'by', 'aldolat-twitter' ) . ' <a ' . $new_tab_text . 'href="https://twitter.com/' . $this->plugin_settings['screen_name'] . '">' . $this->plugin_settings['screen_name'] . '</a>';
-			$html .= '</span>';
-			$html .= '<div class="tweet-body">' . $this->format( $tweet ) . '</div>';
-			$html .= '</div>';
+			$output .= '<div class="tweet">';
+			$output .= '<a ' . $new_tab_text . $twitter_link . '/status/' . $tweet->id_str . '">';
+			$output .= '<time class="tweet-date">' . $this->get_tweet_time( $tweet->created_at ) . '</time>';
+			$output .= '</a> ';
+			$output .= '<span class="tweet-author">';
+			$output .= esc_html__( 'by', 'aldolat-twitter' ) . ' ';
+			$output .= '<a ' . $new_tab_text . $twitter_link . '">';
+			$output .= $this->plugin_settings['screen_name'];
+			$output .= '</a>';
+			$output .= '</span>';
+			$output .= '<div class="tweet-body">' . $this->format( $tweet ) . '</div>';
+			$output .= '</div>';
 		}
 
-		$html .= '</div>';
+		$output .= '</div>';
 
-		return $html;
+		return $output;
 	}
 
 	/**
