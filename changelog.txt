@@ -3,6 +3,7 @@
 = 0.1.0 =
 
 * Added new method for getting links attributes.
+* Separated fetch method from returning tweets.
 
 = 0.0.4 =
 
