@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.0] - 2020-06-14
+### Added
+* Added new method for getting links attributes.
+* Separated fetch method from returning tweets.
+
 ## [0.0.4] - 2020-06-13
 ### Added
 * Added tweet author.
@@ -27,5 +32,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/aldolat-twitter/commits/develop
+[0.1.0]: https://github.com/aldolat/aldolat-twitter/compare/0.0.4...0.1.0
+[0.0.4]: https://github.com/aldolat/aldolat-twitter/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/aldolat/aldolat-twitter/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/aldolat/aldolat-twitter/compare/0.0.1...0.0.2

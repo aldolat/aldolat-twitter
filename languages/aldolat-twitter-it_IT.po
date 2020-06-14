@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aldolat Twitter 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aldolat-twitter\n"
-"POT-Creation-Date: 2020-06-13T22:19:00+02:00\n"
+"POT-Creation-Date: 2020-06-14T08:22:12+02:00\n"
 "PO-Revision-Date: 2020-06-05 21:56+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -43,11 +43,11 @@ msgstr "https://www.aldolat.it/"
 msgid "My latest tweets"
 msgstr "I miei ultimi tweet"
 
-#: includes/class-aldolat-twitter-core.php:102
+#: includes/class-aldolat-twitter-core.php:116
 msgid "by"
 msgstr "di"
 
-#: includes/class-aldolat-twitter-core.php:197
+#: includes/class-aldolat-twitter-core.php:214
 msgid "ago"
 msgstr "fa"
 

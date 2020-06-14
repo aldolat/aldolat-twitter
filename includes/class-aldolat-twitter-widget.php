@@ -91,7 +91,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			'widget_id'          => $args['widget_id'],
 		);
 		$aldolat_tweets = new Aldolat_Twitter_Core( $params );
-		echo $aldolat_tweets->fetch();
+		echo $aldolat_tweets->get_tweets();
 
 		echo $args['after_widget'];
 
