@@ -160,8 +160,6 @@ class Aldolat_Twitter_Core {
 
 		$output .= '</div>';
 
-		var_dump( $tweet );
-
 		return $output;
 	}
 

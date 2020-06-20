@@ -125,10 +125,10 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			$instance['count'] = 200;
 		}
 
-		$instance['exclude_replies']    = isset( $new_instance['exclude_replies'] ) ? true : false;
-		$instance['include_rts']        = isset( $new_instance['include_rts'] ) ? true : false;
+		$instance['exclude_replies'] = isset( $new_instance['exclude_replies'] ) ? true : false;
+		$instance['include_rts']     = isset( $new_instance['include_rts'] ) ? true : false;
 
-		$instance['cache_duration']     = absint( sanitize_text_field( $new_instance['cache_duration'] ) );
+		$instance['cache_duration'] = absint( sanitize_text_field( $new_instance['cache_duration'] ) );
 		if ( 0 === $instance['cache_duration'] || '' === $instance['cache_duration'] || ! is_numeric( $instance['cache_duration'] ) ) {
 			$instance['cache_duration'] = 5;
 		}
@@ -204,7 +204,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 
 			// Type of tweets.
 			$options = array(
-				'timeline' => array(
+				'timeline'  => array(
 					'value' => 'timeline',
 					'desc'  => esc_html__( 'Timeline', 'aldolat-twitter' ),
 				),
