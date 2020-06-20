@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.2.0 =
+
+* Added option to select type of tweets to retrieve.
+
 = 0.1.0 =
 
 * Added new method for getting links attributes.
