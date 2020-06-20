@@ -143,17 +143,15 @@ class Aldolat_Twitter_Core {
 
 		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
 
-		$twitter_link = 'href="https://twitter.com/' . $this->plugin_settings['screen_name'];
-
 		foreach ( $tweets as $tweet ) {
 			$output .= '<div class="tweet">';
-			$output .= '<a ' . $new_tab_text . $twitter_link . '/status/' . $tweet->id_str . '">';
+			$output .= '<a ' . $new_tab_text . 'href="https://twitter.com/' . $tweet->user->screen_name . '/status/' . $tweet->id_str . '">';
 			$output .= '<time class="tweet-date">' . $this->get_tweet_time( $tweet->created_at ) . '</time>';
 			$output .= '</a> ';
 			$output .= '<span class="tweet-author">';
 			$output .= esc_html__( 'by', 'aldolat-twitter' ) . ' ';
-			$output .= '<a ' . $new_tab_text . $twitter_link . '">';
-			$output .= $this->plugin_settings['screen_name'];
+			$output .= '<a ' . $new_tab_text . 'href="https://twitter.com/' . $tweet->user->screen_name . '">';
+			$output .= $tweet->user->name;
 			$output .= '</a>';
 			$output .= '</span>';
 			$output .= '<div class="tweet-body">' . $this->format( $tweet ) . '</div>';
@@ -161,6 +159,8 @@ class Aldolat_Twitter_Core {
 		}
 
 		$output .= '</div>';
+
+		var_dump( $tweet );
 
 		return $output;
 	}
