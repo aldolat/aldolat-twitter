@@ -26,6 +26,22 @@ class Aldolat_Twitter_Core {
 
 	/**
 	 * The array with all plugin settings.
+	 * It contains:
+	 * array {
+	 *     'title'              => string '',
+	 *     'intro_text'         => string '',
+	 *     'screen_name'        => string '',
+	 *     'count'              => int INT,
+	 *     'exclude_replies'    => boolean,
+	 *     'include_rts'        => boolean,
+	 *     'cache_duration'     => int INT,
+	 *     'new_tab'            => boolean,
+	 *     'consumer_key'       => string '',
+	 *     'consumer_secret'    => string '',
+	 *     'oauth_token'        => string '',
+	 *     'oauth_token_secret' => string '',
+	 *     'widget_id'          => string '',
+	 * }
 	 *
 	 * @var array $plugin_settings
 	 * @access private
@@ -42,7 +58,7 @@ class Aldolat_Twitter_Core {
 	 */
 	public function __construct( $args ) {
 		$defaults = aldolat_twitter_get_defaults();
-		wp_parse_args( $args, $defaults );
+		$args     = wp_parse_args( $args, $defaults );
 
 		$this->plugin_settings = $args;
 
@@ -62,9 +78,32 @@ class Aldolat_Twitter_Core {
 	 *
 	 * @return array $tweets The array with with tweets.
 	 * @since 0.0.1
-	 * @access public
+	 * @access private
 	 */
-	public function fetch() {
+	private function fetch() {
+		$widget_id = preg_replace( '/\D/', '', $this->plugin_settings['widget_id'] );
+
+		$transient = get_transient( 'aldolat-twitter-tweets-' . $widget_id );
+
+		if ( false === $transient ) {
+			$response = $this->get_response();
+			$tweets   = json_decode( $response );
+			set_transient( 'aldolat-twitter-tweets-' . $widget_id, $tweets, $this->plugin_settings['cache_duration'] * MINUTE_IN_SECONDS );
+		} else {
+			$tweets = $transient;
+		}
+
+		return $tweets;
+	}
+
+	/**
+	 * Get the response from Twitter based on type of tweets.
+	 *
+	 * @return string $response The response from Twitter with tweets.
+	 * @since 0.2.0
+	 * @access private
+	 */
+	private function get_response() {
 		$params = array(
 			'screen_name'     => $this->plugin_settings['screen_name'],
 			'count'           => $this->plugin_settings['count'],
@@ -73,22 +112,21 @@ class Aldolat_Twitter_Core {
 			'tweet_mode'      => 'extended',
 		);
 
-		$widget_id = preg_replace( '/\D/', '', $this->plugin_settings['widget_id'] );
+		$response = '';
 
-		$feed = get_transient( 'aldolat-twitter-tweets-' . $widget_id );
-
-		if ( false === $feed ) {
-			// Grab user timeline.
-			$resp = $this->connection->get( 'statuses/user_timeline', $params );
-			// Grab favorite tweets.
-			//$resp   = $this->connection->get( 'favorites/list', $params );
-			$tweets = json_decode( $resp );
-			set_transient( 'aldolat-twitter-tweets-' . $widget_id, $tweets, $this->plugin_settings['cache_duration'] * MINUTE_IN_SECONDS );
-		} else {
-			$tweets = $feed;
+		switch ( $this->plugin_settings['type_of_tweets'] ) {
+			case 'timeline':
+				$response = $this->connection->get( 'statuses/user_timeline', $params );
+				break;
+			case 'favorites':
+				$response = $this->connection->get( 'favorites/list', $params );
+				break;
+			default:
+				$response = $this->connection->get( 'statuses/user_timeline', $params );
+				break;
 		}
 
-		return $tweets;
+		return $response;
 	}
 
 	/**
