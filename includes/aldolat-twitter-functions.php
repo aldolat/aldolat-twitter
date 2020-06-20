@@ -42,6 +42,7 @@ function aldolat_twitter_get_defaults() {
 		'title'              => esc_html__( 'My latest tweets', 'aldolat-twitter' ),
 		'intro_text'         => '',
 		'screen_name'        => '',
+		'type_of_tweets'     => 'timeline',
 		'count'              => 5,
 		'exclude_replies'    => false,
 		'include_rts'        => true,

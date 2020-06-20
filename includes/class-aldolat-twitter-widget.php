@@ -77,7 +77,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			echo '<p class="aldolat-twitter-intro-text">' . wp_kses_post( $instance['intro_text'] ) . '</p>';
 		}
 
-		$params = array(
+		/* $params = array(
 			'screen_name'        => $instance['screen_name'],
 			'count'              => $instance['count'],
 			'exclude_replies'    => $instance['exclude_replies'],
@@ -89,8 +89,8 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			'oauth_token'        => $instance['oauth_token'],
 			'oauth_token_secret' => $instance['oauth_token_secret'],
 			'widget_id'          => $args['widget_id'],
-		);
-		$aldolat_tweets = new Aldolat_Twitter_Core( $params );
+		); */
+		$aldolat_tweets = new Aldolat_Twitter_Core( $instance );
 		echo $aldolat_tweets->get_tweets();
 
 		echo $args['after_widget'];
@@ -114,6 +114,8 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 		$instance['title']       = sanitize_text_field( $new_instance['title'] );
 		$instance['intro_text']  = wp_kses_post( $new_instance['intro_text'] );
 		$instance['screen_name'] = preg_replace( '([^a-zA-Z0-9\-_])', '', sanitize_text_field( $new_instance['screen_name'] ) );
+
+		$instance['type_of_tweets'] = $new_instance['type_of_tweets'];
 
 		$instance['count'] = absint( sanitize_text_field( $new_instance['count'] ) );
 		if ( 0 === $instance['count'] || '' === $instance['count'] || ! is_numeric( $instance['count'] ) ) {
@@ -198,6 +200,25 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 				esc_attr( $instance['screen_name'] ),
 				esc_html__( 'username', 'aldolat-twitter' ),
 				esc_html__( 'This is the only mandatory option.', 'aldolat-twitter' )
+			);
+
+			// Type of tweets.
+			$options = array(
+				'timeline' => array(
+					'value' => 'timeline',
+					'desc'  => esc_html__( 'Timeline', 'aldolat-twitter' ),
+				),
+				'favorites' => array(
+					'value' => 'favorites',
+					'desc'  => esc_html__( 'Favorites', 'aldolat-twitter' ),
+				),
+			);
+			aldolat_twitter_form_select(
+				esc_html__( 'Type of tweets', 'posts-in-sidebar' ),
+				$this->get_field_id( 'type_of_tweets' ),
+				$this->get_field_name( 'type_of_tweets' ),
+				$options,
+				$instance['type_of_tweets']
 			);
 
 			// Number of items.
