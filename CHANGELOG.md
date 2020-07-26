@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.0] - 2020-07-26
+### Changed
+* Removed use of gmdate() in favour of wp_date().
+* General improvements in the output strings.
+
 ## [0.2.0] - 2020-06-20
 ### Added
 * Added option to select type of tweets to retrieve.

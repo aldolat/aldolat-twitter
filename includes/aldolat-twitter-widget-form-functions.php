@@ -38,9 +38,10 @@ function aldolat_twitter_form_label( $label, $id ) {
  * @param string $comment An optional comment to display. It is displayed below the input form.
  * @param string $style An optional inline style.
  * @param string $class An optional CSS class.
+ * @param string $type The type of input.
  * @uses aldolat_twitter_form_label
  */
-function aldolat_twitter_form_input_text( $label, $id, $name, $value, $placeholder = '', $comment = '', $style = '', $class = '' ) {
+function aldolat_twitter_form_input_text( $label, $id, $name, $value, $placeholder = '', $comment = '', $style = '', $class = '', $type = 'text' ) {
 	$class = rtrim( 'widefat aldolat-twitter-input ' . $class );
 
 	if ( $style ) {
@@ -52,7 +53,7 @@ function aldolat_twitter_form_input_text( $label, $id, $name, $value, $placehold
 	aldolat_twitter_form_label( $label, $id );
 
 	?>
-	<input type="text"
+	<input type="<?php echo esc_attr( $type ); ?>"
 		id="<?php echo esc_attr( $id ); ?>"
 		name="<?php echo esc_attr( $name ); ?>"
 		value="<?php echo esc_attr( $value ); ?>"
