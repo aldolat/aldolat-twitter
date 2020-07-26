@@ -182,10 +182,12 @@ class Aldolat_Twitter_Core {
 						<?php
 						if ( isset( $tweet->retweeted_status ) ) {
 							$tweet_user = $tweet->retweeted_status->user->screen_name;
+							$tweet_name = $tweet->retweeted_status->user->name;
 							$tweet_id   = $tweet->retweeted_status->id_str;
 							$tweet_time = $tweet->retweeted_status->created_at;
 						} else {
 							$tweet_user = $tweet->user->screen_name;
+							$tweet_name = $tweet->user->name;
 							$tweet_id   = $tweet->id_str;
 							$tweet_time = $tweet->created_at;
 						}
@@ -200,16 +202,16 @@ class Aldolat_Twitter_Core {
 						<span class="tweet-author">
 							<?php esc_html_e( 'by', 'aldolat-twitter' ); ?>
 							<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>">
-								<?php echo esc_html( $tweet_user ); ?>
+								<?php echo esc_html( $tweet_name ); ?>
 							</a>
 						</span>
 						<?php
 						if ( isset( $tweet->retweeted_status ) ) {
 							printf(
 								// translators: date and tweet author name
-								' ' . esc_html__( '(RT on %1$s by %2$s)' ),
+								' ' . esc_html__( '(RT on %1$s by %2$s)', 'aldolat-twitter' ),
 								'<a ' . esc_html( $new_tab_text ) . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '/status/' . esc_html( $tweet->id_str ) . '">' . esc_html( $this->get_tweet_time( $tweet->created_at ) ) . '</a>',
-								'<a ' . esc_html( $new_tab_text ) . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '">' . esc_html( $tweet->user->screen_name ) . '</a>'
+								'<a ' . esc_html( $new_tab_text ) . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '">' . esc_html( $tweet->user->name ) . '</a>'
 							);
 						}
 						?>
