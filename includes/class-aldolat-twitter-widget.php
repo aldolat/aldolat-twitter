@@ -273,28 +273,48 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 				esc_html__( 'Consumer Key:', 'aldolat-twitter' ),
 				$this->get_field_id( 'consumer_key' ),
 				$this->get_field_name( 'consumer_key' ),
-				esc_attr( $instance['consumer_key'] )
+				esc_attr( $instance['consumer_key'] ),
+				'',
+				__( 'Insert Consumer Key', 'aldolat-twitter' ),
+				'',
+				'',
+				'password'
 			);
 			// Consumer secret.
 			aldolat_twitter_form_input_text(
 				esc_html__( 'Consumer secret:', 'aldolat-twitter' ),
 				$this->get_field_id( 'consumer_secret' ),
 				$this->get_field_name( 'consumer_secret' ),
-				esc_attr( $instance['consumer_secret'] )
+				esc_attr( $instance['consumer_secret'] ),
+				'',
+				__( 'Insert Consumer Secret', 'aldolat-twitter' ),
+				'',
+				'',
+				'password'
 			);
 			// Oauth token.
 			aldolat_twitter_form_input_text(
 				esc_html__( 'Oauth token:', 'aldolat-twitter' ),
 				$this->get_field_id( 'oauth_token' ),
 				$this->get_field_name( 'oauth_token' ),
-				esc_attr( $instance['oauth_token'] )
+				esc_attr( $instance['oauth_token'] ),
+				'',
+				__( 'Insert Oauth Token', 'aldolat-twitter' ),
+				'',
+				'',
+				'password'
 			);
 			// Oauth token secret.
 			aldolat_twitter_form_input_text(
 				esc_html__( 'Oauth token secret:', 'aldolat-twitter' ),
 				$this->get_field_id( 'oauth_token_secret' ),
 				$this->get_field_name( 'oauth_token_secret' ),
-				esc_attr( $instance['oauth_token_secret'] )
+				esc_attr( $instance['oauth_token_secret'] ),
+				'',
+				__( 'Insert Oauth Token Secret', 'aldolat-twitter' ),
+				'',
+				'',
+				'password'
 			);
 			?>
 		</div>
