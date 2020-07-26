@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aldolat Twitter 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aldolat-twitter\n"
-"POT-Creation-Date: 2020-07-26T12:21:14+02:00\n"
-"PO-Revision-Date: 2020-07-26 12:22+0200\n"
+"POT-Creation-Date: 2020-07-26T12:56:32+02:00\n"
+"PO-Revision-Date: 2020-07-26 12:35+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -48,11 +48,16 @@ msgstr "I miei ultimi tweet"
 msgid "In reply to %s"
 msgstr "In risposta a %s"
 
-#: includes/class-aldolat-twitter-core.php:201
+#: includes/class-aldolat-twitter-core.php:203
 msgid "by"
 msgstr "da"
 
-#: includes/class-aldolat-twitter-core.php:312
+#. translators: date and tweet author name
+#: includes/class-aldolat-twitter-core.php:212
+msgid "(RT on %1$s by %2$s)"
+msgstr "(RT il %1$s da %2$s)"
+
+#: includes/class-aldolat-twitter-core.php:314
 msgid "ago"
 msgstr "fa"
 

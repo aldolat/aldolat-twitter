@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-07-26T12:29:37+02:00\n"
+"POT-Creation-Date: 2020-07-26T12:56:32+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: aldolat-twitter\n"
@@ -45,11 +45,16 @@ msgstr ""
 msgid "In reply to %s"
 msgstr ""
 
-#: includes/class-aldolat-twitter-core.php:201
+#: includes/class-aldolat-twitter-core.php:203
 msgid "by"
 msgstr ""
 
-#: includes/class-aldolat-twitter-core.php:312
+#. translators: date and tweet author name
+#: includes/class-aldolat-twitter-core.php:212
+msgid "(RT on %1$s by %2$s)"
+msgstr ""
+
+#: includes/class-aldolat-twitter-core.php:314
 msgid "ago"
 msgstr ""
 
