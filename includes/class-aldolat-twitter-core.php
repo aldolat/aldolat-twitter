@@ -136,44 +136,90 @@ class Aldolat_Twitter_Core {
 	 * @since 0.1.0
 	 * @access public
 	 */
-	public function get_tweets() {
-		$tweets = $this->fetch();
-
-		$output = '<div id="twitter-feed">';
-
+	public function the_tweets() {
+		$tweets       = $this->fetch();
 		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
+		?>
 
-		foreach ( $tweets as $tweet ) {
-			$output .= '<div class="tweet">';
-			$output .= '<a ' . $new_tab_text . 'href="https://twitter.com/' . $tweet->user->screen_name . '/status/' . $tweet->id_str . '">';
-			$output .= '<time class="tweet-date">' . $this->get_tweet_time( $tweet->created_at ) . '</time>';
-			$output .= '</a> ';
-			$output .= '<span class="tweet-author">';
-			$output .= esc_html__( 'by', 'aldolat-twitter' ) . ' ';
-			$output .= '<a ' . $new_tab_text . 'href="https://twitter.com/' . $tweet->user->screen_name . '">';
-			$output .= $tweet->user->name;
-			$output .= '</a>';
-			$output .= '</span>';
-			$output .= '<div class="tweet-body">' . $this->format( $tweet ) . '</div>';
-			$output .= '</div>';
-		}
-
-		$output .= '</div>';
-
-		return $output;
-	}
-
-	/**
-	 * Returns the difference in seconds between the tweet time and now.
-	 *
-	 * @param integer $t The formatted datetime of the tweet.
-	 * @return integer The difference in seconds
-	 * @since 0.0.1
-	 * @access private
-	 */
-	private function relative_time( $t ) {
-		$new_tweet_time = strtotime( $t );
-		return human_time_diff( $new_tweet_time, time() );
+		<div id="twitter-feed">
+			<?php
+			foreach ( $tweets as $tweet ) {
+				?>
+				<div class="tweet">
+					<?php
+					if ( isset( $tweet->retweeted_status ) ) {
+						$tweet_screen_name = $tweet->retweeted_status->user->screen_name;
+						$tweet_user_image  = $tweet->retweeted_status->user->profile_image_url_https;
+					} else {
+						$tweet_screen_name = $tweet->user->screen_name;
+						$tweet_user_image  = $tweet->user->profile_image_url_https;
+					}
+					?>
+					<p class="tweet-user-image">
+						<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_screen_name ); ?>">
+							<img src="<?php echo esc_html( $tweet_user_image ); ?>" alt="profile picture" width="32" height="32" />
+						</a>
+					</p>
+					<p class="tweet-body">
+						<?php echo $this->format( $tweet ); ?>
+					</p>
+					<?php
+					if ( $tweet->in_reply_to_status_id ) {
+						?>
+						<p class="tweet-in-reply-to">
+							<?php
+							printf(
+								// translators: The original tweet author name and link.
+								esc_html__( 'In reply to %s', 'aldolat-twitter' ),
+								'<a href="https://twitter.com/' . esc_html( $tweet->in_reply_to_screen_name ) . '/status/' . esc_html( $tweet->in_reply_to_status_id ) . '">@' . esc_html( $tweet->in_reply_to_screen_name ) . '</a>'
+							);
+							?>
+						</p>
+						<?php
+					}
+					?>
+					<p class="tweet-date-author">
+						<?php
+						if ( isset( $tweet->retweeted_status ) ) {
+							$tweet_user = $tweet->retweeted_status->user->screen_name;
+							$tweet_id   = $tweet->retweeted_status->id_str;
+							$tweet_time = $tweet->retweeted_status->created_at;
+						} else {
+							$tweet_user = $tweet->user->screen_name;
+							$tweet_id   = $tweet->id_str;
+							$tweet_time = $tweet->created_at;
+						}
+						?>
+						<span class="tweet-date">
+							<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>/status/<?php echo esc_html( $tweet_id ); ?>">
+								<time>
+									<?php echo esc_html( $this->get_tweet_time( $tweet_time ) ); ?>
+								</time>
+							</a>
+						</span>
+						<span class="tweet-author">
+							<?php esc_html_e( 'by', 'aldolat-twitter' ); ?>
+							<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>">
+								<?php echo esc_html( $tweet_user ); ?>
+							</a>
+						</span>
+						<?php
+						if ( isset( $tweet->retweeted_status ) ) {
+							printf(
+								// translators: date and tweet author name
+								' ' . esc_html__( '(RT on %1$s by %2$s)' ),
+								'<a ' . esc_html( $new_tab_text ) . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '/status/' . esc_html( $tweet->id_str ) . '">' . esc_html( $this->get_tweet_time( $tweet->created_at ) ) . '</a>',
+								'<a ' . esc_html( $new_tab_text ) . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '">' . esc_html( $tweet->user->screen_name ) . '</a>'
+							);
+						}
+						?>
+					</p>
+				</div>
+				<?php
+			}
+			?>
+		</div>
+		<?php
 	}
 
 	/**
@@ -236,21 +282,34 @@ class Aldolat_Twitter_Core {
 	 * @access private
 	 */
 	private function get_tweet_time( $tweet_time ) {
-		// Get the local GMT offset and date/time formats.
-		$local_offset    = (int) get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
+		// Get the local date/time formats.
 		$datetime_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 
-		// Convert tweet time into UNIX timestamp and add local offset.
-		$unix_tweet_time = strtotime( $tweet_time ) + $local_offset;
+		// Convert tweet time into UNIX timestamp.
+		$unix_tweet_time = strtotime( $tweet_time );
 
 		// The tweet date/time is returned in the "... ago" form if the tweet is up to a day old.
 		if ( DAY_IN_SECONDS < ( time() - $unix_tweet_time ) ) {
-			$time = gmdate( $datetime_format, $unix_tweet_time );
+			$time = wp_date( $datetime_format, $unix_tweet_time );
 		} else {
-			$time = $this->relative_time( $tweet_time ) . ' ' . esc_html__( 'ago', 'aldolat-twitter' );
+			$time = $this->relative_time( $tweet_time );
 		}
 
 		return $time;
+	}
+
+	/**
+	 * Returns the difference in seconds between the tweet time and now,
+	 * including the '... ago' string.
+	 *
+	 * @param integer $t The formatted datetime of the tweet.
+	 * @return integer The difference in seconds
+	 * @since 0.0.1
+	 * @access private
+	 */
+	private function relative_time( $t ) {
+		$tweet_time = strtotime( $t );
+		return human_time_diff( $tweet_time, time() ) . ' ' . esc_html__( 'ago', 'aldolat-twitter' );
 	}
 
 	/**
