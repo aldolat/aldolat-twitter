@@ -156,7 +156,7 @@ class Aldolat_Twitter_Core {
 					}
 					?>
 					<p class="tweet-user-image">
-						<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_screen_name ); ?>">
+						<a <?php echo $new_tab_text; ?>href="https://twitter.com/<?php echo esc_html( $tweet_screen_name ); ?>">
 							<img src="<?php echo esc_html( $tweet_user_image ); ?>" alt="profile picture" width="32" height="32" />
 						</a>
 					</p>
@@ -193,25 +193,19 @@ class Aldolat_Twitter_Core {
 						}
 						?>
 						<span class="tweet-date">
-							<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>/status/<?php echo esc_html( $tweet_id ); ?>">
-								<time>
-									<?php echo esc_html( $this->get_tweet_time( $tweet_time ) ); ?>
-								</time>
-							</a>
+							<a <?php echo $new_tab_text; ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>/status/<?php echo esc_html( $tweet_id ); ?>"><time><?php echo esc_html( $this->get_tweet_time( $tweet_time ) ); ?></time></a>
 						</span>
 						<span class="tweet-author">
 							<?php esc_html_e( 'by', 'aldolat-twitter' ); ?>
-							<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>">
-								<?php echo esc_html( $tweet_name ); ?>
-							</a>
+							<a <?php echo $new_tab_text; ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>"><?php echo esc_html( $tweet_name ); ?></a>
 						</span>
 						<?php
 						if ( isset( $tweet->retweeted_status ) ) {
 							printf(
 								// translators: date and tweet author name
 								' ' . esc_html__( '(RT on %1$s by %2$s)', 'aldolat-twitter' ),
-								'<a ' . esc_html( $new_tab_text ) . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '/status/' . esc_html( $tweet->id_str ) . '">' . esc_html( $this->get_tweet_time( $tweet->created_at ) ) . '</a>',
-								'<a ' . esc_html( $new_tab_text ) . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '">' . esc_html( $tweet->user->name ) . '</a>'
+								'<a ' . $new_tab_text . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '/status/' . esc_html( $tweet->id_str ) . '">' . esc_html( $this->get_tweet_time( $tweet->created_at ) ) . '</a>',
+								'<a ' . $new_tab_text . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '">' . esc_html( $tweet->user->name ) . '</a>'
 							);
 						}
 						?>
