@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aldolat Twitter 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aldolat-twitter\n"
-"POT-Creation-Date: 2020-06-20T14:19:07+02:00\n"
-"PO-Revision-Date: 2020-07-26 11:02+0200\n"
+"POT-Creation-Date: 2020-07-26T12:21:14+02:00\n"
+"PO-Revision-Date: 2020-07-26 12:22+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -43,11 +43,16 @@ msgstr "https://www.aldolat.it/"
 msgid "My latest tweets"
 msgstr "I miei ultimi tweet"
 
-#: includes/class-aldolat-twitter-core.php:152
+#. translators: The original tweet author name and link.
+#: includes/class-aldolat-twitter-core.php:173
+msgid "In reply to %s"
+msgstr "In risposta a %s"
+
+#: includes/class-aldolat-twitter-core.php:201
 msgid "by"
 msgstr "da"
 
-#: includes/class-aldolat-twitter-core.php:250
+#: includes/class-aldolat-twitter-core.php:312
 msgid "ago"
 msgstr "fa"
 
@@ -135,14 +140,30 @@ msgstr "Autenticazione su Twitter"
 msgid "Consumer Key:"
 msgstr "Consumer Key:"
 
-#: includes/class-aldolat-twitter-widget.php:280
+#: includes/class-aldolat-twitter-widget.php:278
+msgid "Insert Consumer Key"
+msgstr "Inserisci la Consumer Key:"
+
+#: includes/class-aldolat-twitter-widget.php:285
 msgid "Consumer secret:"
 msgstr "Consumer secret:"
 
-#: includes/class-aldolat-twitter-widget.php:287
+#: includes/class-aldolat-twitter-widget.php:290
+msgid "Insert Consumer Secret"
+msgstr "Inserisci il Consumer secret:"
+
+#: includes/class-aldolat-twitter-widget.php:297
 msgid "Oauth token:"
 msgstr "Oauth token:"
 
-#: includes/class-aldolat-twitter-widget.php:294
+#: includes/class-aldolat-twitter-widget.php:302
+msgid "Insert Oauth Token"
+msgstr "Inserisci l'Oauth token:"
+
+#: includes/class-aldolat-twitter-widget.php:309
 msgid "Oauth token secret:"
 msgstr "Oauth token secret:"
+
+#: includes/class-aldolat-twitter-widget.php:314
+msgid "Insert Oauth Token Secret"
+msgstr "Inserisci l'Oauth token secret:"

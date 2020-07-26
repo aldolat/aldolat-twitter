@@ -18,7 +18,7 @@
  * Plugin URI: https://dev.aldolat.it/projects/aldolat-twitter/
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
- * Version: 0.2.0
+ * Version: 0.3.0
  * License: GPLv3 or later
  * Text Domain: aldolat-twitter
  * Domain Path: /languages/

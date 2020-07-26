@@ -5,7 +5,7 @@
 **Tags** twitter, sidebar, widget  
 **Requires at least** 5.4  
 **Tested up to** 5.4  
-**Stable tag** 0.2.0  
+**Stable tag** 0.3.0  
 **License** GPLv3 or later  
 **License URI** https://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -22,6 +22,9 @@ Display your Tweets in a widget.
 ## Description
 
 This plugin provides a widget where to display your tweets.
+
+This plugin uses a modified version of the original script made by [Gabriele Romanato](https://gabrieleromanato.com/2018/06/wordpress-creare-un-plugin-per-reperire-i-dati-da-twitter). Thanks to him for his work.
+
 
 ## Filing Bugs
 

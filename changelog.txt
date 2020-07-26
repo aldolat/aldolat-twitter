@@ -1,5 +1,10 @@
 == Changelog ==
 
+= 0.3.0 =
+
+* Removed use of gmdate() in favour of wp_date().
+* General improvements in the output strings.
+
 = 0.2.0 =
 
 * Added option to select type of tweets to retrieve.
