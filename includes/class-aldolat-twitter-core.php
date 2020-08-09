@@ -76,7 +76,6 @@ class Aldolat_Twitter_Core {
 	/**
 	 * Get the tweets.
 	 *
-	 * @return string $output The final HTML with tweets.
 	 * @since 0.1.0
 	 * @access public
 	 */
@@ -84,7 +83,11 @@ class Aldolat_Twitter_Core {
 		$tweets       = $this->fetch();
 		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
 
-		$this->get_html_tweets( $tweets, $new_tab_text );
+		if ( false === $tweets ) {
+			esc_html_e( 'No response from Twitter', 'aldolat-twitter' );
+		} else {
+			$this->the_html_tweets( $tweets, $new_tab_text );
+		}
 	}
 
 	/**
@@ -95,16 +98,20 @@ class Aldolat_Twitter_Core {
 	 * @access private
 	 */
 	private function fetch() {
-		$widget_id = preg_replace( '/\D/', '', $this->plugin_settings['widget_id'] );
+		$the_widget_id = preg_replace( '/\D/', '', $this->plugin_settings['widget_id'] );
 
-		$transient = get_transient( 'aldolat-twitter-tweets-' . $widget_id );
+		$transient = get_transient( 'aldolat-twitter-tweets-' . $the_widget_id );
 
-		if ( false === $transient ) {
-			$response = $this->get_response();
-			$tweets   = json_decode( $response );
-			set_transient( 'aldolat-twitter-tweets-' . $widget_id, $tweets, $this->plugin_settings['cache_duration'] * MINUTE_IN_SECONDS );
-		} else {
+		if ( $transient ) {
 			$tweets = $transient;
+		} else {
+			$response = $this->get_response();
+			if ( $response ) {
+				$tweets = json_decode( $response );
+				set_transient( 'aldolat-twitter-tweets-' . $the_widget_id, $tweets, $this->plugin_settings['cache_duration'] * MINUTE_IN_SECONDS );
+			} else {
+				$tweets = false;
+			}
 		}
 
 		return $tweets;
@@ -151,7 +158,7 @@ class Aldolat_Twitter_Core {
 	 * @param $new_tab_text The string with the text for HTML new tab.
 	 * @since 0.4.0
 	 */
-	private function get_html_tweets( $tweets, $new_tab_text ) {
+	private function the_html_tweets( $tweets, $new_tab_text ) {
 		?>
 
 		<div id="twitter-feed">
