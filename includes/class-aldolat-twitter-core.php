@@ -74,6 +74,20 @@ class Aldolat_Twitter_Core {
 	}
 
 	/**
+	 * Get the tweets.
+	 *
+	 * @return string $output The final HTML with tweets.
+	 * @since 0.1.0
+	 * @access public
+	 */
+	public function the_tweets() {
+		$tweets       = $this->fetch();
+		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
+
+		$this->get_html_tweets( $tweets, $new_tab_text );
+	}
+
+	/**
 	 * Fetch the tweets from Twitter.
 	 *
 	 * @return array $tweets The array with with tweets.
@@ -129,16 +143,15 @@ class Aldolat_Twitter_Core {
 		return $response;
 	}
 
+
 	/**
-	 * Get the tweets.
+	 * Print the HTML with tweets.
 	 *
-	 * @return string $output The final HTML with tweets.
-	 * @since 0.1.0
-	 * @access public
+	 * @param $tweets The array containing the tweets.
+	 * @param $new_tab_text The string with the text for HTML new tab.
+	 * @since 0.4.0
 	 */
-	public function the_tweets() {
-		$tweets       = $this->fetch();
-		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
+	private function get_html_tweets( $tweets, $new_tab_text ) {
 		?>
 
 		<div id="twitter-feed">
