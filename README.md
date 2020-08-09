@@ -5,7 +5,7 @@
 **Tags** twitter, sidebar, widget  
 **Requires at least** 5.4  
 **Tested up to** 5.4  
-**Stable tag** 0.3.0  
+**Stable tag** 0.4.0  
 **License** GPLv3 or later  
 **License URI** https://www.gnu.org/licenses/gpl-3.0.html  
 

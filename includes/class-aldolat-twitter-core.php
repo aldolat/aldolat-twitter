@@ -74,6 +74,23 @@ class Aldolat_Twitter_Core {
 	}
 
 	/**
+	 * Get the tweets.
+	 *
+	 * @since 0.1.0
+	 * @access public
+	 */
+	public function the_tweets() {
+		$tweets       = $this->fetch();
+		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
+
+		if ( false === $tweets ) {
+			esc_html_e( 'No response from Twitter', 'aldolat-twitter' );
+		} else {
+			$this->the_html_tweets( $tweets, $new_tab_text );
+		}
+	}
+
+	/**
 	 * Fetch the tweets from Twitter.
 	 *
 	 * @return array $tweets The array with with tweets.
@@ -81,16 +98,20 @@ class Aldolat_Twitter_Core {
 	 * @access private
 	 */
 	private function fetch() {
-		$widget_id = preg_replace( '/\D/', '', $this->plugin_settings['widget_id'] );
+		$the_widget_id = preg_replace( '/\D/', '', $this->plugin_settings['widget_id'] );
 
-		$transient = get_transient( 'aldolat-twitter-tweets-' . $widget_id );
+		$transient = get_transient( 'aldolat-twitter-tweets-' . $the_widget_id );
 
-		if ( false === $transient ) {
-			$response = $this->get_response();
-			$tweets   = json_decode( $response );
-			set_transient( 'aldolat-twitter-tweets-' . $widget_id, $tweets, $this->plugin_settings['cache_duration'] * MINUTE_IN_SECONDS );
-		} else {
+		if ( $transient ) {
 			$tweets = $transient;
+		} else {
+			$response = $this->get_response();
+			if ( $response ) {
+				$tweets = json_decode( $response );
+				set_transient( 'aldolat-twitter-tweets-' . $the_widget_id, $tweets, $this->plugin_settings['cache_duration'] * MINUTE_IN_SECONDS );
+			} else {
+				$tweets = false;
+			}
 		}
 
 		return $tweets;
@@ -129,16 +150,15 @@ class Aldolat_Twitter_Core {
 		return $response;
 	}
 
+
 	/**
-	 * Get the tweets.
+	 * Print the HTML with tweets.
 	 *
-	 * @return string $output The final HTML with tweets.
-	 * @since 0.1.0
-	 * @access public
+	 * @param $tweets The array containing the tweets.
+	 * @param $new_tab_text The string with the text for HTML new tab.
+	 * @since 0.4.0
 	 */
-	public function the_tweets() {
-		$tweets       = $this->fetch();
-		$new_tab_text = $this->new_tab( $this->plugin_settings['new_tab'] );
+	private function the_html_tweets( $tweets, $new_tab_text ) {
 		?>
 
 		<div id="twitter-feed">
@@ -156,7 +176,7 @@ class Aldolat_Twitter_Core {
 					}
 					?>
 					<p class="tweet-user-image">
-						<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_screen_name ); ?>">
+						<a <?php echo $new_tab_text; ?>href="https://twitter.com/<?php echo esc_html( $tweet_screen_name ); ?>">
 							<img src="<?php echo esc_html( $tweet_user_image ); ?>" alt="profile picture" width="32" height="32" />
 						</a>
 					</p>
@@ -193,25 +213,19 @@ class Aldolat_Twitter_Core {
 						}
 						?>
 						<span class="tweet-date">
-							<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>/status/<?php echo esc_html( $tweet_id ); ?>">
-								<time>
-									<?php echo esc_html( $this->get_tweet_time( $tweet_time ) ); ?>
-								</time>
-							</a>
+							<a <?php echo $new_tab_text; ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>/status/<?php echo esc_html( $tweet_id ); ?>"><time><?php echo esc_html( $this->get_tweet_time( $tweet_time ) ); ?></time></a>
 						</span>
 						<span class="tweet-author">
 							<?php esc_html_e( 'by', 'aldolat-twitter' ); ?>
-							<a <?php echo esc_html( $new_tab_text ); ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>">
-								<?php echo esc_html( $tweet_name ); ?>
-							</a>
+							<a <?php echo $new_tab_text; ?>href="https://twitter.com/<?php echo esc_html( $tweet_user ); ?>"><?php echo esc_html( $tweet_name ); ?></a>
 						</span>
 						<?php
 						if ( isset( $tweet->retweeted_status ) ) {
 							printf(
 								// translators: date and tweet author name
 								' ' . esc_html__( '(RT on %1$s by %2$s)', 'aldolat-twitter' ),
-								'<a ' . esc_html( $new_tab_text ) . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '/status/' . esc_html( $tweet->id_str ) . '">' . esc_html( $this->get_tweet_time( $tweet->created_at ) ) . '</a>',
-								'<a ' . esc_html( $new_tab_text ) . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '">' . esc_html( $tweet->user->name ) . '</a>'
+								'<a ' . $new_tab_text . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '/status/' . esc_html( $tweet->id_str ) . '">' . esc_html( $this->get_tweet_time( $tweet->created_at ) ) . '</a>',
+								'<a ' . $new_tab_text . 'href="https://twitter.com/' . esc_html( $tweet->user->screen_name ) . '">' . esc_html( $tweet->user->name ) . '</a>'
 							);
 						}
 						?>

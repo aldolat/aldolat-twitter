@@ -62,7 +62,8 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 	 * @param array $instance Saved values from database.
 	 */
 	public function widget( $args, $instance ) {
-		$instance = wp_parse_args( $instance, aldolat_twitter_get_defaults() );
+		$defaults = aldolat_twitter_get_defaults();
+		$instance = wp_parse_args( $instance, $defaults );
 
 		echo "\n" . '<!-- Start Aldolat Twitter - ' . $args['widget_id'] . ' -->' . "\n";
 
@@ -77,19 +78,23 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 			echo '<p class="aldolat-twitter-intro-text">' . wp_kses_post( $instance['intro_text'] ) . '</p>';
 		}
 
-		/* $params = array(
-			'screen_name'        => $instance['screen_name'],
-			'count'              => $instance['count'],
-			'exclude_replies'    => $instance['exclude_replies'],
-			'include_rts'        => $instance['include_rts'],
-			'cache_duration'     => $instance['cache_duration'],
-			'new_tab'            => $instance['new_tab'],
-			'consumer_key'       => $instance['consumer_key'],
-			'consumer_secret'    => $instance['consumer_secret'],
-			'oauth_token'        => $instance['oauth_token'],
-			'oauth_token_secret' => $instance['oauth_token_secret'],
-			'widget_id'          => $args['widget_id'],
-		); */
+		/*
+		 * The $instance variable contains:
+		 * title
+		 * intro_text
+		 * screen_name
+		 * type_of_tweets
+		 * count
+		 * exclude_replies
+		 * include_rts
+		 * cache_duration
+		 * new_tab
+		 * consumer_key
+		 * consumer_secret
+		 * oauth_token
+		 * oauth_token_secret
+		 * widget_id
+		 */
 		$aldolat_tweets = new Aldolat_Twitter_Core( $instance );
 		$aldolat_tweets->the_tweets();
 
@@ -156,7 +161,8 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 */
 	public function form( $instance ) {
-		$instance = wp_parse_args( (array) $instance, aldolat_twitter_get_defaults() );
+		$defaults = aldolat_twitter_get_defaults();
+		$instance = wp_parse_args( (array) $instance, $defaults );
 		?>
 
 		<div class="aldolat-twitter-widget-content">

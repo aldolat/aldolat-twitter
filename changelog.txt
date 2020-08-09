@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.4.0 =
+
+* Short changes in code.
+
 = 0.3.0 =
 
 * Removed use of gmdate() in favour of wp_date().
