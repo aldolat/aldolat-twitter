@@ -18,14 +18,14 @@
  * Plugin URI: https://dev.aldolat.it/projects/aldolat-twitter/
  * Author: Aldo Latino
  * Author URI: https://www.aldolat.it/
- * Version: 0.4.0
+ * Version: 0.5.0
  * License: GPLv3 or later
  * Text Domain: aldolat-twitter
  * Domain Path: /languages/
  */
 
 /*
- * Copyright (C) 2020  Aldo Latino  (email : aldolat@gmail.com)
+ * Copyright (C) 2020, 2021  Aldo Latino  (email : aldolat@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
