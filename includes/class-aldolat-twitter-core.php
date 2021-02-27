@@ -61,16 +61,6 @@ class Aldolat_Twitter_Core {
 		$args     = wp_parse_args( $args, $defaults );
 
 		$this->plugin_settings = $args;
-
-		$this->connection = new TwitterOAuth(
-			array(
-				'consumer_key'       => $this->plugin_settings['consumer_key'],
-				'consumer_secret'    => $this->plugin_settings['consumer_secret'],
-				'oauth_token'        => $this->plugin_settings['oauth_token'],
-				'oauth_token_secret' => $this->plugin_settings['oauth_token_secret'],
-				'output_format'      => 'text',
-			)
-		);
 	}
 
 	/**
@@ -105,7 +95,18 @@ class Aldolat_Twitter_Core {
 		if ( $transient ) {
 			$tweets = $transient;
 		} else {
+			$this->connection = new TwitterOAuth(
+				array(
+					'consumer_key'       => $this->plugin_settings['consumer_key'],
+					'consumer_secret'    => $this->plugin_settings['consumer_secret'],
+					'oauth_token'        => $this->plugin_settings['oauth_token'],
+					'oauth_token_secret' => $this->plugin_settings['oauth_token_secret'],
+					'output_format'      => 'text',
+				)
+			);
+
 			$response = $this->get_response();
+
 			if ( $response ) {
 				$tweets = json_decode( $response );
 				set_transient( 'aldolat-twitter-tweets-' . $the_widget_id, $tweets, $this->plugin_settings['cache_duration'] * MINUTE_IN_SECONDS );
