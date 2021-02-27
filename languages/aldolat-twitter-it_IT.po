@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aldolat Twitter 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aldolat-twitter\n"
-"POT-Creation-Date: 2020-08-09T17:19:34+02:00\n"
+"POT-Creation-Date: 2021-02-27T18:51:26+01:00\n"
 "PO-Revision-Date: 2020-08-09 17:20+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -43,25 +43,25 @@ msgstr "https://www.aldolat.it/"
 msgid "My latest tweets"
 msgstr "I miei ultimi tweet"
 
-#: includes/class-aldolat-twitter-core.php:87
+#: includes/class-aldolat-twitter-core.php:77
 msgid "No response from Twitter"
 msgstr "Nessuna risposta da Twitter"
 
 #. translators: The original tweet author name and link.
-#: includes/class-aldolat-twitter-core.php:193
+#: includes/class-aldolat-twitter-core.php:194
 msgid "In reply to %s"
 msgstr "In risposta a %s"
 
-#: includes/class-aldolat-twitter-core.php:219
+#: includes/class-aldolat-twitter-core.php:220
 msgid "by"
 msgstr "da"
 
 #. translators: date and tweet author name
-#: includes/class-aldolat-twitter-core.php:226
+#: includes/class-aldolat-twitter-core.php:227
 msgid "(RT on %1$s by %2$s)"
 msgstr "(RT il %1$s da %2$s)"
 
-#: includes/class-aldolat-twitter-core.php:328
+#: includes/class-aldolat-twitter-core.php:329
 msgid "ago"
 msgstr "fa"
 
