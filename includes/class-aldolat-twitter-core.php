@@ -31,9 +31,11 @@ class Aldolat_Twitter_Core {
 	 *     'title'              => string '',
 	 *     'intro_text'         => string '',
 	 *     'screen_name'        => string '',
+	 *     'type_of_tweets'     => string '',
 	 *     'count'              => int INT,
 	 *     'exclude_replies'    => boolean,
 	 *     'include_rts'        => boolean,
+	 *     'display_avatar'     => boolean,
 	 *     'cache_duration'     => int INT,
 	 *     'new_tab'            => boolean,
 	 *     'consumer_key'       => string '',
@@ -168,19 +170,23 @@ class Aldolat_Twitter_Core {
 				?>
 				<div class="tweet">
 					<?php
-					if ( isset( $tweet->retweeted_status ) ) {
-						$tweet_screen_name = $tweet->retweeted_status->user->screen_name;
-						$tweet_user_image  = $tweet->retweeted_status->user->profile_image_url_https;
-					} else {
-						$tweet_screen_name = $tweet->user->screen_name;
-						$tweet_user_image  = $tweet->user->profile_image_url_https;
+					if ( $this->plugin_settings['display_avatar'] ) {
+						if ( isset( $tweet->retweeted_status ) ) {
+							$tweet_screen_name = $tweet->retweeted_status->user->screen_name;
+							$tweet_user_image  = $tweet->retweeted_status->user->profile_image_url_https;
+						} else {
+							$tweet_screen_name = $tweet->user->screen_name;
+							$tweet_user_image  = $tweet->user->profile_image_url_https;
+						}
+						?>
+						<p class="tweet-user-image">
+							<a <?php echo $new_tab_text; ?>href="https://twitter.com/<?php echo esc_html( $tweet_screen_name ); ?>">
+								<img src="<?php echo esc_html( $tweet_user_image ); ?>" alt="profile picture" width="32" height="32" />
+							</a>
+						</p>
+						<?php
 					}
 					?>
-					<p class="tweet-user-image">
-						<a <?php echo $new_tab_text; ?>href="https://twitter.com/<?php echo esc_html( $tweet_screen_name ); ?>">
-							<img src="<?php echo esc_html( $tweet_user_image ); ?>" alt="profile picture" width="32" height="32" />
-						</a>
-					</p>
 					<p class="tweet-body">
 						<?php echo $this->format( $tweet ); ?>
 					</p>
