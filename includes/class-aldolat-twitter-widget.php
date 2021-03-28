@@ -132,6 +132,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 
 		$instance['exclude_replies'] = isset( $new_instance['exclude_replies'] ) ? true : false;
 		$instance['include_rts']     = isset( $new_instance['include_rts'] ) ? true : false;
+		$instance['display_avatar']  = isset( $new_instance['display_avatar'] ) ? true : false;
 
 		$instance['cache_duration'] = absint( sanitize_text_field( $new_instance['cache_duration'] ) );
 		if ( 0 === $instance['cache_duration'] || '' === $instance['cache_duration'] || ! is_numeric( $instance['cache_duration'] ) ) {
@@ -250,6 +251,14 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 				$this->get_field_id( 'include_rts' ),
 				$this->get_field_name( 'include_rts' ),
 				$instance['include_rts']
+			);
+
+			// Display avatar.
+			aldolat_twitter_form_checkbox(
+				esc_html__( 'Display user profile picture', 'aldolat-twitter' ),
+				$this->get_field_id( 'display_avatar' ),
+				$this->get_field_name( 'display_avatar' ),
+				$instance['display_avatar']
 			);
 
 			// Cache.
