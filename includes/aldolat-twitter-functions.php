@@ -22,9 +22,11 @@ if ( ! defined( 'WPINC' ) ) {
  *    string  $title              The title of the widget.
  *    string  $intro_text         The introductory text for the widget.
  *    string  $screen_name        The username on Twitter.
+ *    string  $type_of_tweets     The type of tweets to display.
  *    string  $count              The number of tweets to retrieve.
  *    boolean $exclude_replies    Whether to esclude replies.
  *    boolean $include_rts        Whether to include retweets.
+ *    boolean $display_avatar     Whether to display user avatar.
  *    integer $cache_duration     The duration of the cache.
  *    boolean $new_tab            Whether the links should be opened in a new tab.
  *    string  $consumer_key       The Consumer Key of the Twitter app.
@@ -46,6 +48,7 @@ function aldolat_twitter_get_defaults() {
 		'count'              => 5,
 		'exclude_replies'    => false,
 		'include_rts'        => true,
+		'display_avatar'     => true,
 		'cache_duration'     => 5, // In minutes.
 		'new_tab'            => false,
 		'consumer_key'       => '',

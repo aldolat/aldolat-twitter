@@ -1,5 +1,9 @@
 == Changelog ==
 
+= 0.6.0 =
+
+* Added option to display the user profile picture.
+
 = 0.5.0 =
 
 * Fixed caching issue.
