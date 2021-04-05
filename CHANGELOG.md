@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.6.1] - 2021-04-05
+### Fixed
+* Fixed translation.
+
 ## [0.6.0] - 2021-03-28
 ### Added
 * Added option to display the user profile picture.
@@ -53,6 +57,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * First release of the plugin.
 
 [Unreleased]: https://github.com/aldolat/aldolat-twitter/commits/develop
+[0.6.1]: https://github.com/aldolat/aldolat-twitter/compare/0.6.0...0.6.1
 [0.6.0]: https://github.com/aldolat/aldolat-twitter/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/aldolat/aldolat-twitter/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/aldolat/aldolat-twitter/compare/0.3.0...0.4.0

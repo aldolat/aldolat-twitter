@@ -36,7 +36,7 @@ class Aldolat_Twitter {
 	 * @since 0.0.4
 	 */
 	public function __construct() {
-		$this->plugin_version  = '0.6.0';
+		$this->plugin_version  = '0.6.1';
 		$this->plugin_dir_path = trailingslashit( dirname( plugin_dir_path( __FILE__ ) ) );
 		$this->plugin_dirname  = trailingslashit( dirname( plugin_basename( __FILE__ ), 2 ) );
 	}
