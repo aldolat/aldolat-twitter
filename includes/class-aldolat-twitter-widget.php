@@ -221,7 +221,7 @@ class Aldolat_Twitter_Widget extends WP_Widget {
 				),
 			);
 			aldolat_twitter_form_select(
-				esc_html__( 'Type of tweets', 'posts-in-sidebar' ),
+				esc_html__( 'Type of tweets', 'aldolat-twitter' ),
 				$this->get_field_id( 'type_of_tweets' ),
 				$this->get_field_name( 'type_of_tweets' ),
 				$options,
